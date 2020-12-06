@@ -1,2 +1,2 @@
 # score-esport
-Esport score service
+Esport score com.dragon.scoreapi.service
