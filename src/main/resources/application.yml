@@ -1,0 +1,16 @@
+logging:
+  level:
+    root: debug
+
+spring:
+  datasource:
+    driver: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/score?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultQueries=true
+    username: root
+    password: fuck1234
+
+mybatis:
+  type-aliases-package: com.dragon.score.model
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
