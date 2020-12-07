@@ -10,9 +10,9 @@ import com.dragon.scoreapi.service.SysUserService;
 import com.dragon.scoreapi.utils.ResultUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -44,7 +44,7 @@ public class SysUserController {
     }
 
     @PostMapping("/add")
-    public ResultBean<Object> add(@RequestBody @Valid AddSysUserDto dto) {
+    public ResultBean<Object> add(@RequestBody @Validated AddSysUserDto dto) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(dto, sysUser);
         sysUserService.insert(sysUser);
@@ -52,7 +52,7 @@ public class SysUserController {
     }
 
     @PostMapping("/update")
-    public ResultBean<Object> update(@RequestBody @Valid UpdateSysUserDto dto) {
+    public ResultBean<Object> update(@RequestBody @Validated UpdateSysUserDto dto) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(dto, sysUser);
         sysUserService.update(sysUser);
@@ -60,7 +60,7 @@ public class SysUserController {
     }
 
     @PostMapping("/del")
-    public ResultBean<Object> del(@RequestBody @Valid IdDto dto) {
+    public ResultBean<Object> del(@RequestBody @Validated IdDto dto) {
         sysUserService.del(dto.getId());
         return ResultUtils.success();
     }

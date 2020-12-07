@@ -7,8 +7,9 @@ public enum ResCode {
      */
     SUCCESS(200, "成功"),
     USERNAME_NOTFOUNT(100, "用户不存在"),
-    PASSWORD_NOTNULL(101, "密码不能为空"),
-    TOKEN_ERROR(1001, "token错误");
+    PHONE_NOTNULL(101, "手机号不能为空"),
+    TOKEN_ERROR(1001, "token错误"),
+    CODE_ERROR(1002, "验证码错误");
 
     private Integer code;
     private String message;

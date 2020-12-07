@@ -3,7 +3,47 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.scoreapi.repository.MemberRepository">
-    <select id="findAll">
-        select * from `member`
+    <resultMap id="BaseMap" type="SysRole">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="login_ip" jdbcType="VARCHAR" property="loginIp"/>
+        <result column="login_time" jdbcType="TIMESTAMP" property="loginTime"/>
+    </resultMap>
+    <select id="findAll" resultMap="BaseMap">
+        select
+          id,
+          username,
+          phone,
+          gender,
+          avatar,
+          email,
+          login_ip,
+          login_time
+        from `member`
     </select>
+    <select id="findByPhone" resultMap="BaseMap">
+        select * from member where phone = #{phone}
+    </select>
+    <insert id="insert" parameterType="Member" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into member (
+            username,
+            phone,
+            password,
+            gender,
+            avatar,
+            email,
+        ) values (
+            #{username},
+            #{phone},
+            #{password},
+            #{gender},
+            #{avatar},
+            #{email}
+        )
+    </insert>
 </mapper>

@@ -8,9 +8,9 @@ import com.dragon.scoreapi.service.SysRoleService;
 import com.dragon.scoreapi.utils.ResultUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -42,7 +42,7 @@ public class SysRoleController {
     }
 
     @PostMapping("/add")
-    public ResultBean<Object> add(@RequestBody @Valid AddSysRoleDto dto) {
+    public ResultBean<Object> add(@RequestBody @Validated AddSysRoleDto dto) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(dto, sysRole);
         sysRoleService.insert(sysRole);
@@ -50,7 +50,7 @@ public class SysRoleController {
     }
 
     @PostMapping("/update")
-    public ResultBean<Object> update(@RequestBody @Valid UpdateSysRoleDto dto) {
+    public ResultBean<Object> update(@RequestBody @Validated UpdateSysRoleDto dto) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(dto, sysRole);
         sysRoleService.update(sysRole);
@@ -58,7 +58,7 @@ public class SysRoleController {
     }
 
     @PostMapping("/del")
-    public ResultBean<Object> del(@RequestBody @Valid IdDto dto) {
+    public ResultBean<Object> del(@RequestBody @Validated IdDto dto) {
         sysRoleService.del(dto.getId());
         return ResultUtils.success();
     }

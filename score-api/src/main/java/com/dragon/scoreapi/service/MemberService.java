@@ -16,4 +16,12 @@ public class MemberService {
     public List<Member> findAll() {
         return memberRepository.findAll();
     }
+
+    public Member findByPhone(String phone) {
+        return memberRepository.findByPhone(phone);
+    }
+
+    public void insert(Member member) {
+        memberRepository.insert(member);
+    }
 }
