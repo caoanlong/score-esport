@@ -15,6 +15,7 @@
     <modules>
         <module>score-api</module>
         <module>score-admin</module>
+        <module>score-app</module>
     </modules>
     <dependencies>
         <dependency>
