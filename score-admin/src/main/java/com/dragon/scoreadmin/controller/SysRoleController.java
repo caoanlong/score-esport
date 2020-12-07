@@ -1,12 +1,10 @@
 package com.dragon.scoreadmin.controller;
 
-import com.dragon.scoreadmin.dto.AddSysUserDto;
-import com.dragon.scoreadmin.dto.IdDto;
-import com.dragon.scoreadmin.dto.UpdateSysUserDto;
+import com.dragon.scoreadmin.dto.*;
 import com.dragon.scoreapi.model.PageBean;
 import com.dragon.scoreapi.model.ResultBean;
-import com.dragon.scoreapi.model.SysUser;
-import com.dragon.scoreapi.service.SysUserService;
+import com.dragon.scoreapi.model.SysRole;
+import com.dragon.scoreapi.service.SysRoleService;
 import com.dragon.scoreapi.utils.ResultUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +14,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sysUser")
-public class SysUserController {
+@RequestMapping("/sysRole")
+public class SysRoleController {
     @Autowired
-    private SysUserService sysUserService;
+    private SysRoleService sysRoleService;
 
     @GetMapping("/findAll")
     public ResultBean<Object> findAll() {
-        List<SysUser> all = sysUserService.findAll();
+        List<SysRole> all = sysRoleService.findAll();
         return ResultUtils.success(all);
     }
 
@@ -31,37 +29,37 @@ public class SysUserController {
     public ResultBean<Object> findList(
             @RequestParam(value = "pageIndex", defaultValue = "1") Integer pageIndex,
             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-            @RequestParam(value = "username", required = false) String username
+            @RequestParam(value = "roleName", required = false) String roleName
     ) {
-        PageBean<List<SysUser>> list = sysUserService.findList(pageIndex, pageSize, username);
+        PageBean<List<SysRole>> list = sysRoleService.findList(pageIndex, pageSize, roleName);
         return ResultUtils.success(list);
     }
 
     @GetMapping("/findById")
     public ResultBean<Object> findById(@RequestParam("id") Integer id) {
-        SysUser sysUser = sysUserService.findById(id);
-        return ResultUtils.success(sysUser);
+        SysRole sysRole = sysRoleService.findById(id);
+        return ResultUtils.success(sysRole);
     }
 
     @PostMapping("/add")
-    public ResultBean<Object> add(@RequestBody @Valid AddSysUserDto dto) {
-        SysUser sysUser = new SysUser();
-        BeanUtils.copyProperties(dto, sysUser);
-        sysUserService.insert(sysUser);
+    public ResultBean<Object> add(@RequestBody @Valid AddSysRoleDto dto) {
+        SysRole sysRole = new SysRole();
+        BeanUtils.copyProperties(dto, sysRole);
+        sysRoleService.insert(sysRole);
         return ResultUtils.success();
     }
 
     @PostMapping("/update")
-    public ResultBean<Object> update(@RequestBody @Valid UpdateSysUserDto dto) {
-        SysUser sysUser = new SysUser();
-        BeanUtils.copyProperties(dto, sysUser);
-        sysUserService.update(sysUser);
+    public ResultBean<Object> update(@RequestBody @Valid UpdateSysRoleDto dto) {
+        SysRole sysRole = new SysRole();
+        BeanUtils.copyProperties(dto, sysRole);
+        sysRoleService.update(sysRole);
         return ResultUtils.success();
     }
 
     @PostMapping("/del")
     public ResultBean<Object> del(@RequestBody @Valid IdDto dto) {
-        sysUserService.del(dto.getId());
+        sysRoleService.del(dto.getId());
         return ResultUtils.success();
     }
 }

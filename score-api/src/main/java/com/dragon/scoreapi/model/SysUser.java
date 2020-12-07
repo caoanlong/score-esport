@@ -1,10 +1,12 @@
 package com.dragon.scoreapi.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  * 系统用户
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class SysUser implements UserDetails, CredentialsContainer {
     private Integer id;
@@ -23,6 +26,11 @@ public class SysUser implements UserDetails, CredentialsContainer {
     private String loginIp;
     private Date loginTime;
     private List<Integer> roleIds;
+    private List<SysRole> roles;
+    private Integer createUserId;
+    private Integer updateUserId;
+    private Date createTime;
+    private Date updateTime;
     private List<GrantedAuthority> authorities;
 
     @Override

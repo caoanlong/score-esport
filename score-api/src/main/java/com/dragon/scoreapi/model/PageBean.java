@@ -12,6 +12,7 @@ public class PageBean<T> implements Serializable {
     public Integer getPageIndex() {
         return pageIndex;
     }
+
     public void setPageIndex(Integer pageIndex) {
         this.pageIndex = pageIndex;
     }
@@ -19,6 +20,7 @@ public class PageBean<T> implements Serializable {
     public Integer getPageSize() {
         return pageSize;
     }
+
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
@@ -26,6 +28,7 @@ public class PageBean<T> implements Serializable {
     public Long getTotal() {
         return total;
     }
+
     public void setTotal(Long total) {
         this.total = total;
         float temp = (float) total / (float) this.pageSize;
@@ -40,6 +43,7 @@ public class PageBean<T> implements Serializable {
     public T getList() {
         return list;
     }
+
     public void setList(T list) {
         this.list = list;
     }

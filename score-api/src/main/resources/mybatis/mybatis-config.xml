@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-
+        <typeAlias alias="SysRole" type="com.dragon.scoreapi.model.SysRole"/>
+        <typeAlias alias="SysUser" type="com.dragon.scoreapi.model.SysUser"/>
+        <typeAlias alias="SysPermission" type="com.dragon.scoreapi.model.SysPermission"/>
+        <typeAlias alias="Member" type="com.dragon.scoreapi.model.Member"/>
     </typeAliases>
 </configuration>

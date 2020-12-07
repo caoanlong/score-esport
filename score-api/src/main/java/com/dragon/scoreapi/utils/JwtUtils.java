@@ -28,15 +28,19 @@ public class JwtUtils {
     private String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+
     private String extractId(String token) {
         return extractClaim(token, Claims::getId);
     }
+
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
+
     private Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
+
     private String createToken(Map<String, Object> claims, UserDetails userDetails) {
         String[] split = userDetails.getUsername().split(":");
         return Jwts.builder()
@@ -47,10 +51,12 @@ public class JwtUtils {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRED_TIME))
                 .signWith(SignatureAlgorithm.HS256, SCERET_KEY).compact();
     }
+
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userDetails);
     }
+
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         String uname = userDetails.getUsername().split(":")[0];
