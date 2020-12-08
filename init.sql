@@ -45,3 +45,19 @@ create table sys_user_role
     user_id int not null,
     role_id int not null
 );
+
+create table score.member
+(
+    id             int auto_increment
+        primary key,
+    username       varchar(30)   null,
+    phone          varchar(20)   not null,
+    password       varchar(100)  not null,
+    gender         int default 1 null,
+    avatar         varchar(100)  null,
+    email          varchar(50)   null,
+    login_ip       varchar(50)   null,
+    login_time     datetime      null,
+    update_user_id int           null,
+    update_time    datetime      null
+);

@@ -17,11 +17,19 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    public Member findById(Integer id) {
+        Member member = memberRepository.findById(id);
+        member.setPassword(null);
+        return member;
+    }
     public Member findByPhone(String phone) {
         return memberRepository.findByPhone(phone);
     }
 
     public void insert(Member member) {
         memberRepository.insert(member);
+    }
+    public void update(Member member) {
+        memberRepository.update(member);
     }
 }

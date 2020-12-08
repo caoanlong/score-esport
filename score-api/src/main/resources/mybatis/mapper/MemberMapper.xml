@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.scoreapi.repository.MemberRepository">
-    <resultMap id="BaseMap" type="SysRole">
+    <resultMap id="BaseMap" type="Member">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -26,6 +26,9 @@
           login_time
         from `member`
     </select>
+    <select id="findById" resultMap="BaseMap">
+        select * from member where id = #{id}
+    </select>
     <select id="findByPhone" resultMap="BaseMap">
         select * from member where phone = #{phone}
     </select>
@@ -36,7 +39,7 @@
             password,
             gender,
             avatar,
-            email,
+            email
         ) values (
             #{username},
             #{phone},
@@ -46,4 +49,40 @@
             #{email}
         )
     </insert>
+    <update id="update" parameterType="Member">
+        update member
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="loginIp != null">
+                login_ip = #{loginIp},
+            </if>
+            <if test="loginTime != null">
+                login_time = #{loginTime},
+            </if>
+            <if test="updateUserId != null">
+                update_user_id = #{updateUserId},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

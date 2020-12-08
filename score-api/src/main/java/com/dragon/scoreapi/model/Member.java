@@ -24,6 +24,8 @@ public class Member implements UserDetails, CredentialsContainer {
     private String email;
     private String loginIp;
     private Date loginTime;
+    private Integer updateUserId;
+    private Date updateTime;
     private List<GrantedAuthority> authorities;
 
     @Override
