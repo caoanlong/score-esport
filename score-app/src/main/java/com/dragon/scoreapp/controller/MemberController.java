@@ -6,23 +6,29 @@ import com.dragon.scoreapi.model.ResultBean;
 import com.dragon.scoreapi.model.exception.CommonException;
 import com.dragon.scoreapi.service.MemberService;
 import com.dragon.scoreapi.utils.Constants;
+import com.dragon.scoreapi.utils.FileUtils;
 import com.dragon.scoreapi.utils.RandomCodeUtils;
 import com.dragon.scoreapi.utils.ResultUtils;
 import com.dragon.scoreapp.dto.RegisterMemberDto;
-import com.dragon.scoreapp.security.MemberDetailService;
+import com.dragon.scoreapp.dto.ResetPassMemberDto;
+import com.dragon.scoreapp.dto.UpdateMemberDto;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -32,13 +38,13 @@ import java.util.regex.Pattern;
 @RestController
 @RequestMapping("/member")
 public class MemberController {
+    @Value("${file.path}")
+    private String filePath;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
     private MemberService memberService;
-    @Autowired
-    private MemberDetailService memberDetailService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -72,6 +78,37 @@ public class MemberController {
         String code = RandomCodeUtils.create(4);
         stringRedisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
         return ResultUtils.success(code);
+    }
+
+    @PostMapping("/update")
+    public ResultBean<Object> update(@RequestBody @Validated UpdateMemberDto dto) throws IOException {
+        Integer id = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Member member = new Member();
+        BeanUtils.copyProperties(dto, member);
+        member.setId(id);
+        MultipartFile avatarFile = dto.getAvatarFile();
+        if (null != avatarFile) {
+            String path = filePath + "/" + id;
+            String filename = "avatar_" + avatarFile.getOriginalFilename();
+            FileUtils.upload(avatarFile, path, filename);
+            member.setAvatar(id + "/" + filename);
+        }
+        memberService.update(member);
+        return ResultUtils.success();
+    }
+
+    @PostMapping("/resetPass")
+    public ResultBean<Object> resetPass(@RequestBody @Validated ResetPassMemberDto dto) {
+        String phone = dto.getPhone();
+        String password = dto.getPassword();
+        Integer id = (Integer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String code = stringRedisTemplate.opsForValue().get(phone);
+        if (!dto.getCode().equals(code)) throw new CommonException(ResCode.CODE_ERROR);
+        Member member = new Member();
+        member.setId(id);
+        member.setPassword(passwordEncoder.encode(password.trim()));
+        memberService.update(member);
+        return ResultUtils.success();
     }
 
     /**
