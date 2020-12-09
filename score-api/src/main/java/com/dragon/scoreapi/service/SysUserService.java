@@ -4,9 +4,7 @@ import com.dragon.scoreapi.model.PageBean;
 import com.dragon.scoreapi.model.SysUser;
 import com.dragon.scoreapi.model.SysUserRole;
 import com.dragon.scoreapi.repository.SysUserRepository;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,9 +17,6 @@ public class SysUserService {
 
     @Autowired
     private SysUserRepository sysUserRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     public List<SysUser> findAll() {
         return sysUserRepository.findAll();
@@ -55,9 +50,6 @@ public class SysUserService {
         Date now = new Date();
         sysUser.setCreateTime(now);
         sysUser.setUpdateTime(now);
-        String password = sysUser.getPassword();
-        String passwd = passwordEncoder.encode(password);
-        sysUser.setPassword(passwd);
         sysUserRepository.insert(sysUser);
         List<Integer> roleIds = sysUser.getRoleIds();
         if (null == roleIds || roleIds.size() == 0) return;
@@ -74,11 +66,6 @@ public class SysUserService {
     @Transactional
     public void update(SysUser sysUser) {
         sysUser.setUpdateTime(new Date());
-        String password = sysUser.getPassword();
-        if (null != password) {
-            String passwd = passwordEncoder.encode(password);
-            sysUser.setPassword(passwd);
-        }
         sysUserRepository.update(sysUser);
         Integer id = sysUser.getId();
         sysUserRepository.delSysUserRoleByUserId(id);

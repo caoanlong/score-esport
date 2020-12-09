@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.scoreapi.repository.MatchRepository">
+    <resultMap id="BaseMap" type="Match">
+        <id column="match_id" jdbcType="VARCHAR" property="matchId"/>
+        <result column="match_time" jdbcType="VARCHAR" property="matchTime"/>
+        <result column="match_title" jdbcType="VARCHAR" property="matchTitle"/>
+        <result column="game_type" jdbcType="VARCHAR" property="gameType"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="tournament_id" jdbcType="VARCHAR" property="tournamentId"/>
+        <result column="tournament_logo" jdbcType="VARCHAR" property="tournamentLogo"/>
+        <result column="tournament_name" jdbcType="VARCHAR" property="tournamentName"/>
+        <result column="tournament_name_en" jdbcType="VARCHAR" property="tournamentNameEn"/>
+        <result column="tournament_short_name" jdbcType="VARCHAR" property="tournamentShortName"/>
+        <result column="view_actual_num" jdbcType="INTEGER" property="viewActualNum"/>
+        <result column="view_num" jdbcType="INTEGER" property="viewNum"/>
+        <result column="length_time" jdbcType="INTEGER" property="lengthTime"/>
+        <result column="is_focus" jdbcType="BOOLEAN" property="isFocus"/>
+        <result column="box" jdbcType="INTEGER" property="box"/>
+        <result column="box_bum" jdbcType="INTEGER" property="boxBum"/>
+        <result column="home_id" jdbcType="VARCHAR" property="homeId"/>
+        <result column="home_name" jdbcType="VARCHAR" property="homeName"/>
+        <result column="home_short_name" jdbcType="VARCHAR" property="homeShortName"/>
+        <result column="home_logo" jdbcType="VARCHAR" property="homeLogo"/>
+        <result column="home_live_score" jdbcType="INTEGER" property="homeLiveScore"/>
+        <result column="home_score" jdbcType="INTEGER" property="homeScore"/>
+        <result column="home_odds" jdbcType="VARCHAR" property="homeOdds"/>
+        <result column="home_rang_fen" jdbcType="VARCHAR" property="homeRangFen"/>
+        <result column="home_trend" jdbcType="VARCHAR" property="homeTrend"/>
+        <result column="away_id" jdbcType="VARCHAR" property="awayId"/>
+        <result column="away_name" jdbcType="VARCHAR" property="awayName"/>
+        <result column="away_short_name" jdbcType="VARCHAR" property="awayShortName"/>
+        <result column="away_logo" jdbcType="VARCHAR" property="awayLogo"/>
+        <result column="away_live_score" jdbcType="INTEGER" property="awayLiveScore"/>
+        <result column="away_score" jdbcType="INTEGER" property="awayScore"/>
+        <result column="away_odds" jdbcType="VARCHAR" property="awayOdds"/>
+        <result column="away_rang_fen" jdbcType="VARCHAR" property="awayRangFen"/>
+        <result column="away_trend" jdbcType="VARCHAR" property="awayTrend"/>
+        <collection property="csgoTeamStats" ofType="CsgoTeamStats">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="match_id" jdbcType="VARCHAR" property="matchId"/>
+            <result column="map_name" jdbcType="VARCHAR" property="mapName"/>
+            <result column="first_score" jdbcType="INTEGER" property="firstScore"/>
+            <result column="first_win" jdbcType="INTEGER" property="firstWin"/>
+            <result column="five_win" jdbcType="INTEGER" property="fiveWin"/>
+            <result column="over_time_score" jdbcType="INTEGER" property="overTimeScore"/>
+            <result column="second_score" jdbcType="INTEGER" property="secondScore"/>
+            <result column="sixteenth_win" jdbcType="INTEGER" property="sixteenthWin"/>
+            <result column="ten_win" jdbcType="INTEGER" property="tenWin"/>
+        </collection>
+        <collection property="dotaTeamStats" ofType="DotaTeamStats">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="match_id" jdbcType="VARCHAR" property="matchId"/>
+            <result column="assists_count" jdbcType="INTEGER" property="assistsCount"/>
+            <result column="die_count" jdbcType="INTEGER" property="dieCount"/>
+            <result column="economic_count" jdbcType="INTEGER" property="economicCount"/>
+            <result column="exp_count" jdbcType="INTEGER" property="expCount"/>
+            <result column="fifteen_kill" jdbcType="INTEGER" property="fifteenKill"/>
+            <result column="first_blood" jdbcType="INTEGER" property="firstBlood"/>
+            <result column="first_rou_shan" jdbcType="INTEGER" property="firstRouShan"/>
+            <result column="first_tower" jdbcType="INTEGER" property="firstTower"/>
+            <result column="five_kill" jdbcType="INTEGER" property="fiveKill"/>
+            <result column="kill_count" jdbcType="INTEGER" property="killCount"/>
+            <result column="ten_kill" jdbcType="INTEGER" property="tenKill"/>
+        </collection>
+    </resultMap>
+    <select id="findList" resultMap="BaseMap">
+        select
+          m.*,
+          csgo.*,
+          dota.*
+        from `match` m
+          left join `csgo_team_stats` csgo on csgo.match_id = m.match_id
+          left join `dota_eam_stats` dota on dota.match_id = m.match_id
+    </select>
+    <insert id="insert" parameterType="Match" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into `match` (
+            match_id,
+            match_time,
+            match_title,
+            game_type,
+            status,
+            tournament_id
+        ) values (
+            #{matchId},
+            #{matchTime},
+            #{matchTitle},
+            #{gameType},
+            #{status},
+            #{tournamentId}
+        )
+    </insert>
+</mapper>

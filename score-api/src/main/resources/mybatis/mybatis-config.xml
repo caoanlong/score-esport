@@ -8,5 +8,8 @@
         <typeAlias alias="SysUser" type="com.dragon.scoreapi.model.SysUser"/>
         <typeAlias alias="SysPermission" type="com.dragon.scoreapi.model.SysPermission"/>
         <typeAlias alias="Member" type="com.dragon.scoreapi.model.Member"/>
+        <typeAlias alias="Match" type="com.dragon.scoreapi.model.Match"/>
+        <typeAlias alias="Match" type="com.dragon.scoreapi.model.CsgoTeamStats"/>
+        <typeAlias alias="Match" type="com.dragon.scoreapi.model.DotaTeamStats"/>
     </typeAliases>
 </configuration>

@@ -10,6 +10,7 @@ import com.dragon.scoreapi.service.SysUserService;
 import com.dragon.scoreapi.utils.ResultUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,9 @@ import java.util.List;
 public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/findAll")
     public ResultBean<Object> findAll() {
@@ -47,6 +51,9 @@ public class SysUserController {
     public ResultBean<Object> add(@RequestBody @Validated AddSysUserDto dto) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(dto, sysUser);
+        String password = sysUser.getPassword();
+        String pwd = passwordEncoder.encode(password);
+        sysUser.setPassword(pwd);
         sysUserService.insert(sysUser);
         return ResultUtils.success();
     }
@@ -55,6 +62,10 @@ public class SysUserController {
     public ResultBean<Object> update(@RequestBody @Validated UpdateSysUserDto dto) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(dto, sysUser);
+        if (null != sysUser.getPassword()) {
+            String pwd = passwordEncoder.encode(sysUser.getPassword());
+            sysUser.setPassword(pwd);
+        }
         sysUserService.update(sysUser);
         return ResultUtils.success();
     }
