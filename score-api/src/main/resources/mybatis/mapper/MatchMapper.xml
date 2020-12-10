@@ -39,7 +39,7 @@
         <result column="away_rang_fen" jdbcType="VARCHAR" property="awayRangFen"/>
         <result column="away_trend" jdbcType="VARCHAR" property="awayTrend"/>
         <collection property="csgoTeamStats" ofType="CsgoTeamStats">
-            <id column="id" jdbcType="INTEGER" property="id"/>
+            <id column="id" jdbcType="BIGINT" property="id"/>
             <result column="match_id" jdbcType="VARCHAR" property="matchId"/>
             <result column="map_name" jdbcType="VARCHAR" property="mapName"/>
             <result column="first_score" jdbcType="INTEGER" property="firstScore"/>
@@ -51,7 +51,7 @@
             <result column="ten_win" jdbcType="INTEGER" property="tenWin"/>
         </collection>
         <collection property="dotaTeamStats" ofType="DotaTeamStats">
-            <id column="id" jdbcType="INTEGER" property="id"/>
+            <id column="id" jdbcType="BIGINT" property="id"/>
             <result column="match_id" jdbcType="VARCHAR" property="matchId"/>
             <result column="assists_count" jdbcType="INTEGER" property="assistsCount"/>
             <result column="die_count" jdbcType="INTEGER" property="dieCount"/>
@@ -67,13 +67,14 @@
         </collection>
     </resultMap>
     <select id="findList" resultMap="BaseMap">
-        select
-          m.*,
-          csgo.*,
-          dota.*
-        from `match` m
-          left join `csgo_team_stats` csgo on csgo.match_id = m.match_id
-          left join `dota_eam_stats` dota on dota.match_id = m.match_id
+        select * from `match`
+        where match_time = #{time} and game_type in
+        <foreach collection="list" item="gameType" index="index" open="(" close=")" separator=",">
+            #{gameType}
+        </foreach>
+    </select>
+    <select id="isExist" resultType="Integer">
+        select 1 from `match` where match_id = #{matchId} limit 1
     </select>
     <insert id="insert" parameterType="Match" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into `match` (
@@ -82,14 +83,233 @@
             match_title,
             game_type,
             status,
-            tournament_id
+            tournament_id,
+            tournament_logo,
+            tournament_name,
+            tournament_name_en,
+            tournament_short_name,
+            view_actual_num,
+            view_num,
+            length_time,
+            is_focus,
+            box,
+            box_bum,
+            home_id,
+            home_name,
+            home_short_name,
+            home_logo,
+            home_live_score,
+            home_score,
+            home_odds,
+            home_rang_fen,
+            home_trend,
+            away_id,
+            away_name,
+            away_short_name,
+            away_logo,
+            away_live_score,
+            away_score,
+            away_odds,
+            away_rang_fen,
+            away_trend
         ) values (
             #{matchId},
             #{matchTime},
             #{matchTitle},
             #{gameType},
             #{status},
-            #{tournamentId}
+            #{tournamentId},
+            #{tournamentLogo},
+            #{tournamentName},
+            #{tournamentNameEn},
+            #{tournamentShortName},
+            #{viewActualNum},
+            #{viewNum},
+            #{lengthTime},
+            #{isFocus},
+            #{box},
+            #{boxBum},
+            #{homeId},
+            #{homeName},
+            #{homeShortName},
+            #{homeLogo},
+            #{homeLiveScore},
+            #{homeScore},
+            #{homeOdds},
+            #{homeRangFen},
+            #{homeTrend},
+            #{awayId},
+            #{awayName},
+            #{awayShortName},
+            #{awayLogo},
+            #{awayLiveScore},
+            #{awayScore},
+            #{awayOdds},
+            #{awayRangFen},
+            #{awayTrend}
         )
+    </insert>
+    <update id="update" parameterType="Match">
+        update `match`
+        <set>
+            <if test="matchTime != null">
+                match_time = #{matchTime},
+            </if>
+            <if test="matchTitle != null">
+                match_title = #{matchTitle},
+            </if>
+            <if test="gameType != null">
+                game_type = #{gameType},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="tournamentId != null">
+                tournament_id = #{tournamentId},
+            </if>
+            <if test="tournamentLogo != null">
+                tournament_logo = #{tournamentLogo},
+            </if>
+            <if test="tournamentName != null">
+                tournament_name = #{tournamentName},
+            </if>
+            <if test="tournamentNameEn != null">
+                tournament_name_en = #{tournamentNameEn},
+            </if>
+            <if test="tournamentShortName != null">
+                tournament_short_name = #{tournamentShortName},
+            </if>
+            <if test="viewActualNum != null">
+                view_actual_num = #{viewActualNum},
+            </if>
+            <if test="viewNum != null">
+                view_num = #{viewNum},
+            </if>
+            <if test="lengthTime != null">
+                length_time = #{lengthTime},
+            </if>
+            <if test="isFocus != null">
+                is_focus = #{isFocus},
+            </if>
+            <if test="box != null">
+                box = #{box},
+            </if>
+            <if test="boxBum != null">
+                box_bum = #{boxBum},
+            </if>
+            <if test="homeId != null">
+                home_id = #{homeId},
+            </if>
+            <if test="homeName != null">
+                home_name = #{homeName},
+            </if>
+            <if test="homeShortName != null">
+                home_short_name = #{homeShortName},
+            </if>
+            <if test="homeLogo != null">
+                home_logo = #{homeLogo},
+            </if>
+            <if test="homeLiveScore != null">
+                home_live_score = #{homeLiveScore},
+            </if>
+            <if test="homeScore != null">
+                home_score = #{homeScore},
+            </if>
+            <if test="homeOdds != null">
+                home_odds = #{homeOdds},
+            </if>
+            <if test="homeRangFen != null">
+                home_rang_fen = #{homeRangFen},
+            </if>
+            <if test="homeTrend != null">
+                home_trend = #{homeTrend},
+            </if>
+            <if test="awayId != null">
+                away_id = #{awayId},
+            </if>
+            <if test="awayName != null">
+                away_name = #{awayName},
+            </if>
+            <if test="awayShortName != null">
+                away_short_name = #{awayShortName},
+            </if>
+            <if test="awayLogo != null">
+                away_logo = #{awayLogo},
+            </if>
+            <if test="awayLiveScore != null">
+                away_live_score = #{awayLiveScore},
+            </if>
+            <if test="awayScore != null">
+                away_score = #{awayScore},
+            </if>
+            <if test="awayOdds != null">
+                away_odds = #{awayOdds},
+            </if>
+            <if test="awayRangFen != null">
+                away_rang_fen = #{awayRangFen},
+            </if>
+            <if test="awayTrend != null">
+                away_trend = #{awayTrend},
+            </if>
+        </set>
+        where match_id = #{matchId}
+    </update>
+    <insert id="insertCsgoTeamStats" parameterType="ArrayList">
+        insert into csgo_team_stats (
+            match_id,
+            map_name,
+            first_score,
+            first_win,
+            five_win,
+            over_time_score,
+            second_score,
+            sixteenth_win,
+            ten_win
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.matchId},
+            #{item.mapName},
+            #{item.firstScore},
+            #{item.firstWin},
+            #{item.fiveWin},
+            #{item.overTimeScore},
+            #{item.secondScore},
+            #{item.sixteenthWin},
+            #{item.tenWin}
+        )
+        </foreach>
+    </insert>
+    <insert id="insertDotaTeamStats" parameterType="ArrayList">
+        insert into dota_team_stats (
+            match_id,
+            assists_count,
+            die_count,
+            economic_count,
+            exp_count,
+            fifteen_kill,
+            first_blood,
+            first_rou_shan,
+            first_tower,
+            five_kill,
+            kill_count,
+            ten_kill
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+        (
+            #{item.matchId},
+            #{item.assistsCount},
+            #{item.dieCount},
+            #{item.economicCount},
+            #{item.expCount},
+            #{item.fifteenKill},
+            #{item.firstBlood},
+            #{item.firstRouShan},
+            #{item.firstTower},
+            #{item.fiveKill},
+            #{item.killCount},
+            #{item.tenKill}
+        )
+        </foreach>
     </insert>
 </mapper>

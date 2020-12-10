@@ -17,4 +17,8 @@ public class DotaTeamStats {
     private Integer fiveKill;
     private Integer killCount;
     private Integer tenKill;
+    private Integer towerCount;
+    private Integer win;
+    private Integer crystalCount;
+    private Integer economicDiff;
 }
