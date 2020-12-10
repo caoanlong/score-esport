@@ -1,11 +1,11 @@
-package com.dragon.scoreapi.model;
+package com.dragon.scoreapi.model.dota;
 
 import lombok.Data;
 
 @Data
 public class DotaTeamStats {
-    private Long id;
-    private String matchId;
+    private Integer id;
+    private Integer matchId;
     private Integer assistsCount;
     private Integer dieCount;
     private Integer economicCount;
@@ -21,4 +21,5 @@ public class DotaTeamStats {
     private Integer win;
     private Integer crystalCount;
     private Integer economicDiff;
+    private Integer teamId;
 }

@@ -1,7 +1,5 @@
 package com.dragon.scoreapi.repository;
 
-import com.dragon.scoreapi.model.CsgoTeamStats;
-import com.dragon.scoreapi.model.DotaTeamStats;
 import com.dragon.scoreapi.model.Match;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +11,6 @@ public interface MatchRepository {
     Integer isExist(String matchId);
     void insert(Match match);
     void update(Match match);
-    void insertCsgoTeamStats(List<CsgoTeamStats> csgoTeamStatsList);
-    void insertDotaTeamStats(List<DotaTeamStats> dotaTeamStatsList);
+//    void insertCsgoTeamStats(List<CsgoTeamStats> csgoTeamStatsList);
+//    void insertDotaTeamStats(List<DotaTeamStats> dotaTeamStatsList);
 }

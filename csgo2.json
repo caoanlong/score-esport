@@ -1,0 +1,266 @@
+{
+    "code": 200,
+    "message": "Success",
+    "body": {
+        "box": 2,
+        "boxNum": 2,
+        "matchId": 67427,
+        "tournamentId": 5601,
+        "status": 2,
+        "singleStatus": 2,
+        "mapId": 13,
+        "mapName": "vertigo",
+        "mapLogo": "https://esports-cdn.namitiyu.com/csgo/map/background/f69855ccd532b3b596fbadf65f543907.png",
+        "roundNum": 21,
+        "homeTeam": {
+            "firstWin": 0,
+            "sixteenthWin": 1,
+            "fiveWin": 0,
+            "tenWin": 1,
+            "firstScore": 8,
+            "secondScore": 5,
+            "overTimeScore": 0,
+            "mapName": "vertigo",
+            "side": 2,
+            "teamId": 4681,
+            "teamName": "Heretics",
+            "teamLogo": "https://www.sndjoss.com/game/csgo/team/6b881aee6c359efed8e1538c8215bfc5.png",
+            "firstHalfDetail": [ 0, 2, 0, 2, 0, 0, 0, 2, 2, 3, 2, 3, 0, 2, 0
+            ],
+            "secondHalfDetail": [ 1, 1, 1, 1, 1 ],
+            "playerOnGoingList": [
+                {
+                    "playerId": 7075,
+                    "playerName": "DEVIL",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/621065f75c47154fc9923514139a6a73.png",
+                    "playerStat": {
+                        "money": 6150,
+                        "defuseKit": 0,
+                        "helmet": 1,
+                        "kevlar": 1,
+                        "hp": 100,
+                        "weaponId": 15,
+                        "weaponName": "m4a1",
+                        "weaponLogo": "https://www.sndjoss.com/game/csgo/weapon/m4a1.png",
+                        "killCount": 15,
+                        "assistsCount": 3,
+                        "dieCount": 12,
+                        "roundAvgOutput": 75.0,
+                        "playerName": "DEVIL",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/621065f75c47154fc9923514139a6a73.png"
+                    }
+                },
+                {
+                    "playerId": 9195,
+                    "playerName": "nonick",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/a705278897f226fe4ab0c72af760c2d2.png",
+                    "playerStat": {
+                        "money": 3350,
+                        "defuseKit": 1,
+                        "helmet": 1,
+                        "kevlar": 1,
+                        "hp": 100,
+                        "weaponId": 15,
+                        "weaponName": "m4a1",
+                        "weaponLogo": "https://www.sndjoss.com/game/csgo/weapon/m4a1.png",
+                        "killCount": 14,
+                        "assistsCount": 3,
+                        "dieCount": 10,
+                        "roundAvgOutput": 63.9,
+                        "playerName": "nonick",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/a705278897f226fe4ab0c72af760c2d2.png"
+                    }
+                },
+                {
+                    "playerId": 11925,
+                    "playerName": "Lucky",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/e385db7a5849686cdc66f09c1543c40b.png",
+                    "playerStat": {
+                        "money": 11000,
+                        "defuseKit": 1,
+                        "helmet": 1,
+                        "kevlar": 1,
+                        "hp": 100,
+                        "weaponId": 53,
+                        "weaponName": "awp",
+                        "weaponLogo": "https://www.sndjoss.com/game/csgo/weapon/awp.png",
+                        "killCount": 21,
+                        "assistsCount": 2,
+                        "dieCount": 13,
+                        "roundAvgOutput": 103.0,
+                        "playerName": "Lucky",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/e385db7a5849686cdc66f09c1543c40b.png"
+                    }
+                },
+                {
+                    "playerId": 18058,
+                    "playerName": "Python",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/1b0311b616399922d6b49bb0c099c093.png",
+                    "playerStat": {
+                        "money": 9800,
+                        "defuseKit": 1,
+                        "helmet": 1,
+                        "kevlar": 1,
+                        "hp": 100,
+                        "weaponId": 20,
+                        "weaponName": "ak47",
+                        "weaponLogo": "https://www.sndjoss.com/game/csgo/weapon/ak47.png",
+                        "killCount": 20,
+                        "assistsCount": 4,
+                        "dieCount": 11,
+                        "roundAvgOutput": 86.6,
+                        "playerName": "Python",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/1b0311b616399922d6b49bb0c099c093.png"
+                    }
+                },
+                {
+                    "playerId": 18139,
+                    "playerName": "Djoko",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/1b0311b616399922d6b49bb0c099c093.png",
+                    "playerStat": {
+                        "money": 4950,
+                        "defuseKit": 0,
+                        "helmet": 0,
+                        "kevlar": 0,
+                        "hp": 0,
+                        "weaponId": null,
+                        "weaponName": null,
+                        "weaponLogo": null,
+                        "killCount": 15,
+                        "assistsCount": 4,
+                        "dieCount": 13,
+                        "roundAvgOutput": 96.0,
+                        "playerName": "Djoko",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/1b0311b616399922d6b49bb0c099c093.png"
+                    }
+                }
+            ],
+            "playerAfterList": null
+        },
+        "awayTeam": {
+            "firstWin": 1,
+            "sixteenthWin": 0,
+            "fiveWin": 1,
+            "tenWin": 0,
+            "firstScore": 7,
+            "secondScore": 0,
+            "overTimeScore": 0,
+            "mapName": "vertigo",
+            "side": 1,
+            "teamId": 6150,
+            "teamName": "Apeks",
+            "teamLogo": "https://www.sndjoss.com/game/csgo/team/d3626bfa43a01afee3c0b70a1d4f4e2a.png",
+            "firstHalfDetail": [ 4, 0, 1, 0, 1, 1, 4, 0, 0, 0, 0, 0, 1, 0, 5 ],
+            "secondHalfDetail": [ 0, 0, 0, 0, 0 ],
+            "playerOnGoingList": [
+                {
+                    "playerId": 4841,
+                    "playerName": "dennis",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/70c6d684a9ee247e19689e97002f1d3a.png",
+                    "playerStat": {
+                        "money": 150,
+                        "defuseKit": 0,
+                        "helmet": 1,
+                        "kevlar": 1,
+                        "hp": 100,
+                        "weaponId": 20,
+                        "weaponName": "ak47",
+                        "weaponLogo": "https://www.sndjoss.com/game/csgo/weapon/ak47.png",
+                        "killCount": 15,
+                        "assistsCount": 2,
+                        "dieCount": 17,
+                        "roundAvgOutput": 63.0,
+                        "playerName": "dennis",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/70c6d684a9ee247e19689e97002f1d3a.png"
+                    }
+                },
+                {
+                    "playerId": 5295,
+                    "playerName": "Polly",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/a27907bccd51242ed485899f9ea0a9dc.png",
+                    "playerStat": {
+                        "money": 300,
+                        "defuseKit": 0,
+                        "helmet": 0,
+                        "kevlar": 0,
+                        "hp": 0,
+                        "weaponId": null,
+                        "weaponName": null,
+                        "weaponLogo": null,
+                        "killCount": 14,
+                        "assistsCount": 5,
+                        "dieCount": 16,
+                        "roundAvgOutput": 68.5,
+                        "playerName": "Polly",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/a27907bccd51242ed485899f9ea0a9dc.png"
+                    }
+                },
+                {
+                    "playerId": 6774,
+                    "playerName": "jkaem",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/c6c1a9f5313e7dffb86cda287b838e58.png",
+                    "playerStat": {
+                        "money": 450,
+                        "defuseKit": 0,
+                        "helmet": 1,
+                        "kevlar": 1,
+                        "hp": 34,
+                        "weaponId": 20,
+                        "weaponName": "ak47",
+                        "weaponLogo": "https://www.sndjoss.com/game/csgo/weapon/ak47.png",
+                        "killCount": 9,
+                        "assistsCount": 6,
+                        "dieCount": 17,
+                        "roundAvgOutput": 66.5,
+                        "playerName": "jkaem",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/c6c1a9f5313e7dffb86cda287b838e58.png"
+                    }
+                },
+                {
+                    "playerId": 13020,
+                    "playerName": "Marcelious",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/0844de5f24957720f925dc7b4694fad5.png",
+                    "playerStat": {
+                        "money": 750,
+                        "defuseKit": 0,
+                        "helmet": 1,
+                        "kevlar": 1,
+                        "hp": 44,
+                        "weaponId": 20,
+                        "weaponName": "ak47",
+                        "weaponLogo": "https://www.sndjoss.com/game/csgo/weapon/ak47.png",
+                        "killCount": 12,
+                        "assistsCount": 5,
+                        "dieCount": 17,
+                        "roundAvgOutput": 57.3,
+                        "playerName": "Marcelious",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/0844de5f24957720f925dc7b4694fad5.png"
+                    }
+                },
+                {
+                    "playerId": 14842,
+                    "playerName": "Grusarn",
+                    "playerLogo": "https://www.sndjoss.com/game/csgo/player/7729657ae24b74d9c26c1a3ddeb581c3.png",
+                    "playerStat": {
+                        "money": 450,
+                        "defuseKit": 0,
+                        "helmet": 0,
+                        "kevlar": 0,
+                        "hp": 0,
+                        "weaponId": null,
+                        "weaponName": null,
+                        "weaponLogo": null,
+                        "killCount": 9,
+                        "assistsCount": 4,
+                        "dieCount": 18,
+                        "roundAvgOutput": 65.0,
+                        "playerName": "Grusarn",
+                        "playerLogo": "https://www.sndjoss.com/game/csgo/player/7729657ae24b74d9c26c1a3ddeb581c3.png"
+                    }
+                }
+            ],
+            "playerAfterList": null
+        },
+        "lengthTime": 60
+    }
+}

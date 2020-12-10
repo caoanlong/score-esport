@@ -6,8 +6,8 @@ import java.util.List;
 
 @Data
 public class Match {
-    private String matchId;
-    private String matchTime;
+    private Integer matchId;
+    private Long matchTime;
     private String matchTitle;
     private String gameType;
     private Integer status;
@@ -23,6 +23,7 @@ public class Match {
     private Integer box;
     private Integer boxBum;
 
+    /*
     private String homeId;
     private String homeName;
     private String homeShortName;
@@ -42,8 +43,8 @@ public class Match {
     private String awayOdds;
     private String awayRangFen;
     private String awayTrend;
+     */
 
-    private List<CsgoTeamStats> csgoTeamStats;
-    private List<DotaTeamStats> dotaTeamStats;
-    private List<Object> lolTeamStatsList;
+    private List<Object> homeTeam;
+    private List<Object> awayTeam;
 }

@@ -1,10 +1,7 @@
 package com.dragon.scoreapi.service;
 
-import com.dragon.scoreapi.model.CsgoTeamStats;
-import com.dragon.scoreapi.model.DotaTeamStats;
 import com.dragon.scoreapi.model.Match;
 import com.dragon.scoreapi.repository.MatchRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
