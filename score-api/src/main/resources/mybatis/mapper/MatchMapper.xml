@@ -38,38 +38,11 @@
         <result column="away_odds" jdbcType="VARCHAR" property="awayOdds"/>
         <result column="away_rang_fen" jdbcType="VARCHAR" property="awayRangFen"/>
         <result column="away_trend" jdbcType="VARCHAR" property="awayTrend"/>
-        <collection property="csgoTeamStats" ofType="CsgoTeamStats">
-            <id column="id" jdbcType="BIGINT" property="id"/>
-            <result column="match_id" jdbcType="VARCHAR" property="matchId"/>
-            <result column="map_name" jdbcType="VARCHAR" property="mapName"/>
-            <result column="first_score" jdbcType="INTEGER" property="firstScore"/>
-            <result column="first_win" jdbcType="INTEGER" property="firstWin"/>
-            <result column="five_win" jdbcType="INTEGER" property="fiveWin"/>
-            <result column="over_time_score" jdbcType="INTEGER" property="overTimeScore"/>
-            <result column="second_score" jdbcType="INTEGER" property="secondScore"/>
-            <result column="sixteenth_win" jdbcType="INTEGER" property="sixteenthWin"/>
-            <result column="ten_win" jdbcType="INTEGER" property="tenWin"/>
-        </collection>
-        <collection property="dotaTeamStats" ofType="DotaTeamStats">
-            <id column="id" jdbcType="BIGINT" property="id"/>
-            <result column="match_id" jdbcType="VARCHAR" property="matchId"/>
-            <result column="assists_count" jdbcType="INTEGER" property="assistsCount"/>
-            <result column="die_count" jdbcType="INTEGER" property="dieCount"/>
-            <result column="economic_count" jdbcType="INTEGER" property="economicCount"/>
-            <result column="exp_count" jdbcType="INTEGER" property="expCount"/>
-            <result column="fifteen_kill" jdbcType="INTEGER" property="fifteenKill"/>
-            <result column="first_blood" jdbcType="INTEGER" property="firstBlood"/>
-            <result column="first_rou_shan" jdbcType="INTEGER" property="firstRouShan"/>
-            <result column="first_tower" jdbcType="INTEGER" property="firstTower"/>
-            <result column="five_kill" jdbcType="INTEGER" property="fiveKill"/>
-            <result column="kill_count" jdbcType="INTEGER" property="killCount"/>
-            <result column="ten_kill" jdbcType="INTEGER" property="tenKill"/>
-        </collection>
     </resultMap>
     <select id="findList" resultMap="BaseMap">
         select * from `match`
-        where match_time = #{time} and game_type in
-        <foreach collection="list" item="gameType" index="index" open="(" close=")" separator=",">
+        where date(match_time) = date(#{date}) and game_type in
+        <foreach collection="gameTypes" item="gameType" index="index" open="(" close=")" separator=",">
             #{gameType}
         </foreach>
     </select>
@@ -254,62 +227,4 @@
         </set>
         where match_id = #{matchId}
     </update>
-    <insert id="insertCsgoTeamStats" parameterType="ArrayList">
-        insert into csgo_team_stats (
-            match_id,
-            map_name,
-            first_score,
-            first_win,
-            five_win,
-            over_time_score,
-            second_score,
-            sixteenth_win,
-            ten_win
-        ) values
-        <foreach collection="list" item="item" index="index" separator=",">
-        (
-            #{item.matchId},
-            #{item.mapName},
-            #{item.firstScore},
-            #{item.firstWin},
-            #{item.fiveWin},
-            #{item.overTimeScore},
-            #{item.secondScore},
-            #{item.sixteenthWin},
-            #{item.tenWin}
-        )
-        </foreach>
-    </insert>
-    <insert id="insertDotaTeamStats" parameterType="ArrayList">
-        insert into dota_team_stats (
-            match_id,
-            assists_count,
-            die_count,
-            economic_count,
-            exp_count,
-            fifteen_kill,
-            first_blood,
-            first_rou_shan,
-            first_tower,
-            five_kill,
-            kill_count,
-            ten_kill
-        ) values
-        <foreach collection="list" item="item" index="index" separator=",">
-        (
-            #{item.matchId},
-            #{item.assistsCount},
-            #{item.dieCount},
-            #{item.economicCount},
-            #{item.expCount},
-            #{item.fifteenKill},
-            #{item.firstBlood},
-            #{item.firstRouShan},
-            #{item.firstTower},
-            #{item.fiveKill},
-            #{item.killCount},
-            #{item.tenKill}
-        )
-        </foreach>
-    </insert>
 </mapper>

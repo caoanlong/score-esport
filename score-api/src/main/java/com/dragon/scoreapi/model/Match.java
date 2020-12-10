@@ -2,12 +2,13 @@ package com.dragon.scoreapi.model;
 
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
 public class Match {
     private Integer matchId;
-    private Long matchTime;
+    private Date matchTime;
     private String matchTitle;
     private String gameType;
     private Integer status;
@@ -23,7 +24,6 @@ public class Match {
     private Integer box;
     private Integer boxBum;
 
-    /*
     private String homeId;
     private String homeName;
     private String homeShortName;
@@ -43,7 +43,6 @@ public class Match {
     private String awayOdds;
     private String awayRangFen;
     private String awayTrend;
-     */
 
     private List<Object> homeTeam;
     private List<Object> awayTeam;

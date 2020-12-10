@@ -1,16 +1,16 @@
 package com.dragon.scoreapi.repository;
 
 import com.dragon.scoreapi.model.Match;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface MatchRepository {
-    List<Match> findList(String time, List<String> gameTypes);
-    Integer isExist(String matchId);
+    List<Match> findList(@Param("date") Date date, @Param("gameTypes") String[] gameTypes);
+    Integer isExist(Integer matchId);
     void insert(Match match);
     void update(Match match);
-//    void insertCsgoTeamStats(List<CsgoTeamStats> csgoTeamStatsList);
-//    void insertDotaTeamStats(List<DotaTeamStats> dotaTeamStatsList);
 }

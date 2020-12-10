@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,8 +15,9 @@ public class MatchService {
     @Autowired
     private MatchRepository matchRepository;
 
-    public List<Match> findList(String time, List<String> gameTypes) {
-        return matchRepository.findList(time, gameTypes);
+    public List<Match> findList(Date date, String[] gameTypes) {
+
+        return matchRepository.findList(date, gameTypes);
     }
 
     @Transactional

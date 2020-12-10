@@ -1,9 +1,3 @@
 spring:
   profiles:
     active: dev
-mybatis:
-  type-aliases-package: com.dragon.scoreapi.model
-  mapper-locations: classpath:mybatis/mapper/*.xml
-  config-location: classpath:mybatis/mybatis-config.xml
-server:
-  port: 8100

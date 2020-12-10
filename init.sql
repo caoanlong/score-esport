@@ -31,44 +31,45 @@ create table dota_team_stats
     ten_kill       int         null
 );
 
-create table `match`
+create table score.`match`
 (
-    match_id              varchar(30)  not null
-        primary key,
-    match_time            varchar(50)  not null,
-    match_title           varchar(30)  null,
-    game_type             varchar(20)  not null,
-    status                int          null,
-    tournament_id         varchar(30)  null,
-    tournament_logo       varchar(100) null,
-    tournament_name       varchar(50)  null,
-    tournament_name_en    varchar(50)  null,
-    tournament_short_name varchar(30)  null,
-    view_actual_num       int          null,
-    view_num              int          null,
-    length_time           int          null,
-    is_focus              tinyint(1)   null,
-    box                   int          null,
-    box_bum               int          null,
-    home_id               varchar(20)  null,
-    home_name             varchar(50)  null,
-    home_short_name       varchar(30)  null,
-    home_logo             varchar(100) null,
-    home_live_score       int          null,
-    home_score            int          null,
-    home_odds             varchar(20)  null,
-    home_rang_fen         varchar(20)  null,
-    home_trend            varchar(30)  null,
-    away_id               varchar(20)  null,
-    away_name             varchar(50)  null,
-    away_short_name       varchar(30)  null,
-    away_logo             varchar(100) null,
-    away_live_score       int          null,
-    away_score            int          null,
-    away_odds             varchar(20)  null,
-    away_rang_fen         varchar(20)  null,
-    away_trend            varchar(30)  null
+  match_id              int          not null
+    primary key,
+  match_time            varchar(50)  not null,
+  match_title           varchar(30)  null,
+  game_type             varchar(20)  not null,
+  status                int          null,
+  tournament_id         varchar(30)  null,
+  tournament_logo       varchar(100) null,
+  tournament_name       varchar(50)  null,
+  tournament_name_en    varchar(50)  null,
+  tournament_short_name varchar(30)  null,
+  view_actual_num       int          null,
+  view_num              int          null,
+  length_time           int          null,
+  is_focus              tinyint(1)   null,
+  box                   int          null,
+  box_bum               int          null,
+  home_id               varchar(20)  null,
+  home_name             varchar(50)  null,
+  home_short_name       varchar(30)  null,
+  home_logo             varchar(100) null,
+  home_live_score       int          null,
+  home_score            int          null,
+  home_odds             varchar(20)  null,
+  home_rang_fen         varchar(20)  null,
+  home_trend            varchar(30)  null,
+  away_id               varchar(20)  null,
+  away_name             varchar(50)  null,
+  away_short_name       varchar(30)  null,
+  away_logo             varchar(100) null,
+  away_live_score       int          null,
+  away_score            int          null,
+  away_odds             varchar(20)  null,
+  away_rang_fen         varchar(20)  null,
+  away_trend            varchar(30)  null
 );
+
 
 create table member
 (
