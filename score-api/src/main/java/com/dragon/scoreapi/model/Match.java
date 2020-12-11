@@ -12,7 +12,7 @@ public class Match {
     private String matchTitle;
     private String gameType;
     private Integer status;
-    private String tournamentId;
+    private Integer tournamentId;
     private String tournamentLogo;
     private String tournamentName;
     private String tournamentNameEn;

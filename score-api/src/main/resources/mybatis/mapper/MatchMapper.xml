@@ -9,7 +9,7 @@
         <result column="match_title" jdbcType="VARCHAR" property="matchTitle"/>
         <result column="game_type" jdbcType="VARCHAR" property="gameType"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
-        <result column="tournament_id" jdbcType="VARCHAR" property="tournamentId"/>
+        <result column="tournament_id" jdbcType="INTEGER" property="tournamentId"/>
         <result column="tournament_logo" jdbcType="VARCHAR" property="tournamentLogo"/>
         <result column="tournament_name" jdbcType="VARCHAR" property="tournamentName"/>
         <result column="tournament_name_en" jdbcType="VARCHAR" property="tournamentNameEn"/>
@@ -41,15 +41,21 @@
     </resultMap>
     <select id="findList" resultMap="BaseMap">
         select * from `match`
-        where date(match_time) = date(#{date}) and game_type in
+        where game_type in
         <foreach collection="gameTypes" item="gameType" index="index" open="(" close=")" separator=",">
             #{gameType}
         </foreach>
+        <if test="gameStatus != null">
+            and status = #{gameStatus}
+        </if>
+        <if test="date != null">
+            and date(match_time) = date(#{date})
+        </if>
     </select>
     <select id="isExist" resultType="Integer">
         select 1 from `match` where match_id = #{matchId} limit 1
     </select>
-    <insert id="insert" parameterType="Match" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    <insert id="insert" parameterType="Match" keyColumn="match_id" keyProperty="matchId">
         insert into `match` (
             match_id,
             match_time,
@@ -57,10 +63,6 @@
             game_type,
             status,
             tournament_id,
-            tournament_logo,
-            tournament_name,
-            tournament_name_en,
-            tournament_short_name,
             view_actual_num,
             view_num,
             length_time,
@@ -92,10 +94,6 @@
             #{gameType},
             #{status},
             #{tournamentId},
-            #{tournamentLogo},
-            #{tournamentName},
-            #{tournamentNameEn},
-            #{tournamentShortName},
             #{viewActualNum},
             #{viewNum},
             #{lengthTime},
@@ -139,18 +137,6 @@
             </if>
             <if test="tournamentId != null">
                 tournament_id = #{tournamentId},
-            </if>
-            <if test="tournamentLogo != null">
-                tournament_logo = #{tournamentLogo},
-            </if>
-            <if test="tournamentName != null">
-                tournament_name = #{tournamentName},
-            </if>
-            <if test="tournamentNameEn != null">
-                tournament_name_en = #{tournamentNameEn},
-            </if>
-            <if test="tournamentShortName != null">
-                tournament_short_name = #{tournamentShortName},
             </if>
             <if test="viewActualNum != null">
                 view_actual_num = #{viewActualNum},

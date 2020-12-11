@@ -9,5 +9,6 @@
         <typeAlias alias="SysPermission" type="com.dragon.scoreapi.model.SysPermission"/>
         <typeAlias alias="Member" type="com.dragon.scoreapi.model.Member"/>
         <typeAlias alias="Match" type="com.dragon.scoreapi.model.Match"/>
+        <typeAlias alias="Tournament" type="com.dragon.scoreapi.model.Tournament"/>
     </typeAliases>
 </configuration>

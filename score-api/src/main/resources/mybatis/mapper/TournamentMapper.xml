@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.scoreapi.repository.TournamentRepository">
+    <resultMap id="BaseMap" type="Tournament">
+        <id column="tournament_id" jdbcType="VARCHAR" property="tournamentId"/>
+        <result column="tournament_name" jdbcType="VARCHAR" property="tournamentName"/>
+        <result column="tournament_logo" jdbcType="VARCHAR" property="tournamentLogo"/>
+        <result column="tournament_name_en" jdbcType="VARCHAR" property="tournamentNameEn"/>
+        <result column="tournament_short_name" jdbcType="VARCHAR" property="tournamentShortName"/>
+        <result column="game_type" jdbcType="VARCHAR" property="gameType"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="start_time" jdbcType="VARCHAR" property="startTime"/>
+        <result column="end_time" jdbcType="VARCHAR" property="endTime"/>
+    </resultMap>
+    <select id="findList" resultMap="BaseMap">
+        select * from `tournament`
+        where game_type = #{gameType} and status = #{status}
+    </select>
+    <select id="isExist" resultType="Integer">
+        select 1 from `tournament` where tournament_id = #{tournamentId} limit 1
+    </select>
+    <insert id="insert" parameterType="Tournament" keyColumn="tournament_id" keyProperty="tournamentId">
+        insert into `tournament` (
+            tournament_id,
+            tournament_name,
+            tournament_logo,
+            tournament_name_en,
+            tournament_short_name,
+            game_type,
+            status,
+            start_time,
+            end_time
+        ) values (
+            #{tournamentId},
+            #{tournamentName},
+            #{tournamentLogo},
+            #{tournamentNameEn},
+            #{tournamentShortName},
+            #{gameType},
+            #{status},
+            #{startTime},
+            #{endTime}
+        )
+    </insert>
+    <update id="update" parameterType="Tournament">
+        update `tournament`
+        <set>
+            <if test="tournamentName != null">
+                tournament_name = #{tournamentName},
+            </if>
+            <if test="tournamentLogo != null">
+                tournament_logo = #{tournamentLogo},
+            </if>
+            <if test="tournamentNameEn != null">
+                tournament_name_en = #{tournamentNameEn},
+            </if>
+            <if test="status != null">
+                tournament_short_name = #{tournamentShortName},
+            </if>
+            <if test="gameType != null">
+                game_type = #{gameType},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime}
+            </if>
+        </set>
+        where tournament_id = #{tournamentId}
+    </update>
+</mapper>

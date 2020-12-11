@@ -26,15 +26,16 @@ public class MatchController {
     @GetMapping("/findList")
     public ResultBean<Object> findList(
             @RequestParam(value = "time", required = false) String time,
-            @RequestParam(value = "gameTypes", defaultValue = "lol,dota,kog,csgo,ow") String gameTypes
+            @RequestParam(value = "gameTypes", defaultValue = "lol,dota,kog,csgo,ow") String gameTypes,
+            @RequestParam(value = "gameStatus", required = false) Integer gameStatus
     ) throws ParseException {
-        Date date = new Date();
+        Date date = null;
         if (null != time) {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(time);
         }
 
         String[] gameTypeArray = gameTypes.split(",");
-        List<Match> list = matchService.findList(date, gameTypeArray);
+        List<Match> list = matchService.findList(date, gameTypeArray, gameStatus);
         return ResultUtils.success(list);
     }
 }

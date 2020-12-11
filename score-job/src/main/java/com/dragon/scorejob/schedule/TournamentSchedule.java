@@ -24,10 +24,7 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class MatchSchedule {
-
-    @Autowired
-    private MatchService matchService;
+public class TournamentSchedule {
 
     @Autowired
     private TournamentService tournamentService;
@@ -35,12 +32,12 @@ public class MatchSchedule {
     private final OkHttpClient client = new OkHttpClient();
     private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-    private void getList(String time) throws IOException {
+    private void getList(String gameType) throws IOException {
         Request.Builder reqBuilder = new Request.Builder();
-        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://m.shangniu.cn/api/game/user/app/index/matchList").newBuilder();
-        urlBuilder.addQueryParameter("gameTypes", "lol,dota,kog,csgo,ow");
-        urlBuilder.addQueryParameter("getType", "3");
-        urlBuilder.addQueryParameter("time", time);
+        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://www.shangniu.cn/api/game/user/tournament/getTournamentVoPage").newBuilder();
+        urlBuilder.addQueryParameter("pageIndex", "1");
+        urlBuilder.addQueryParameter("pageSize", "10000");
+        urlBuilder.addQueryParameter("gameType", gameType);
         reqBuilder.url(urlBuilder.build());
         reqBuilder.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
         reqBuilder.addHeader("Host", "www.shangniu.cn");
@@ -55,17 +52,13 @@ public class MatchSchedule {
         if (code == 200) {
             JSONObject body = json.getJSONObject("body");
             if (null != body) {
-                String string = body.getString("dayMatches");
-                List<Match> matches = JSONArray.parseArray(string, Match.class);
-                for (Match match: matches) {
-                    matchService.save(match);
-                    Tournament tournament = new Tournament();
-                    tournament.setTournamentId(match.getTournamentId());
-                    tournament.setTournamentNameEn(match.getTournamentNameEn());
-                    tournament.setTournamentShortName(match.getTournamentShortName());
-                    tournamentService.update(tournament);
+                String string = body.getString("rows");
+                List<Tournament> tournaments = JSONArray.parseArray(string, Tournament.class);
+                for (Tournament tournament: tournaments) {
+                    tournament.setGameType(gameType);
+                    tournamentService.save(tournament);
                 }
-                log.info("{} Match 保存完成！", time);
+                log.info("{} Tournament 保存完成！", gameType);
             }
         } else {
             log.error("请求失败: {}", json.getString("message"));
@@ -73,31 +66,14 @@ public class MatchSchedule {
     }
 
     /**
-     * 每5分钟执行一次
+     * 每1小时分钟执行一次，初始启动延时20秒执行
      */
-    @Scheduled(fixedRate = 300000)
-    public void save() throws IOException, InterruptedException {
-        Date today = new Date();
-        List<String> dates = new ArrayList<>();
-        for (int i = 5; i > 0; i--) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(today);
-            calendar.add(Calendar.DAY_OF_MONTH, -1 * i);
-            Date date = calendar.getTime();
-            dates.add(format.format(date));
-        }
-        dates.add(format.format(today));
-        for (int i = 0; i < 5; i++) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(today);
-            calendar.add(Calendar.DAY_OF_MONTH, i + 1);
-            Date date = calendar.getTime();
-            dates.add(format.format(date));
-        }
-        for (String date: dates) {
-            log.info(date);
-            Thread.sleep(3000);
-            getList(date);
+    @Scheduled(fixedRate = 3600000, initialDelay = 20000)
+    public void save() throws IOException {
+
+        String[] gameTypes = {"lol", "dota", "kog", "csgo"};
+        for (int i = 0; i < gameTypes.length; i++) {
+            getList(gameTypes[i]);
         }
     }
 }
