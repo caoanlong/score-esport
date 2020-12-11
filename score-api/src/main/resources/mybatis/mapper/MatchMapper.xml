@@ -40,7 +40,8 @@
         <result column="away_trend" jdbcType="VARCHAR" property="awayTrend"/>
     </resultMap>
     <select id="findList" resultMap="BaseMap">
-        select * from `match`
+        select m.*, t.* from `match` m
+        left join `tournament` t on t.tournament_id = m.tournament_id
         where game_type in
         <foreach collection="gameTypes" item="gameType" index="index" open="(" close=")" separator=",">
             #{gameType}
