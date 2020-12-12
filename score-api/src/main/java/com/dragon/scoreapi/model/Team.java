@@ -32,6 +32,8 @@ public class Team {
     private String countryLogo2;
     private Integer score;
     private Integer ranking;
+    private Integer regionRanking;
+    private Integer worldRanking;
     private Date createdTime;
     private Date updatedTime;
 }

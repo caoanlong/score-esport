@@ -5,17 +5,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.dragon.scoreapi.model.Team;
 import com.dragon.scoreapi.service.TeamService;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -63,6 +63,7 @@ public class TeamSchedule {
                         team.setNameEn(teamName);
                         team.setShortName(teamName);
                         team.setLogo(teamLogo);
+                        team.setGameType(gameType);
                         teamService.save(team);
                     }
                 }
@@ -71,6 +72,32 @@ public class TeamSchedule {
         } else {
             log.error("请求失败: {}", json.getString("message"));
         }
+    }
+
+    private void getInfo(String gameType, String id) throws IOException {
+        log.debug("gameType: {}, id: {}", gameType, id);
+        Request.Builder reqBuilder = new Request.Builder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://m.shangniu.cn/esports/" + gameType + "-team-" + id + ".html")
+                .newBuilder();
+        reqBuilder.url(urlBuilder.build());
+        reqBuilder.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
+        reqBuilder.addHeader("Host", "m.shangniu.cn");
+        reqBuilder.addHeader("Referer", "https://m.shangniu.cn/esports");
+        Request request = reqBuilder.build();
+
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response.message());
+        String html = response.body().string();
+        Document document = Jsoup.parse(html);
+        Element nextData = document.getElementById("__NEXT_DATA__");
+        String data = nextData.data();
+        JSONObject jsonObject = JSONObject.parseObject(data);
+        JSONObject props = jsonObject.getJSONObject("props");
+        JSONObject pageProps = props.getJSONObject("pageProps");
+        String teamInfo = pageProps.getString("teamInfo");
+        Team team = JSONObject.parseObject(teamInfo, Team.class);
+        teamService.update(team);
+        log.debug("done");
     }
 
     /**
@@ -83,6 +110,26 @@ public class TeamSchedule {
         for (int i = 0; i < gameTypes.length; i++) {
             Thread.sleep(10000);
             getList(gameTypes[i]);
+        }
+    }
+
+    /**
+     * 每12小时分钟执行一次，初始启动延时3秒执行
+     */
+    @Scheduled(fixedRate = 43200000, initialDelay = 3000)
+    public void saveInfo() throws InterruptedException {
+        if ("dev".equals(env)) return;
+        List<Team> teams = teamService.findAll();
+        for (int i = 0; i < teams.size(); i++) {
+            Thread.sleep(3000);
+            Team team = teams.get(i);
+            new Thread(() -> {
+                try {
+                    getInfo(team.getGameType(), team.getId());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
     }
 }

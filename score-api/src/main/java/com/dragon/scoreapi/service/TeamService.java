@@ -14,6 +14,9 @@ public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
 
+    public List<Team> findAll() {
+        return teamRepository.findAll();
+    }
     public List<Team> findList(String gameType) {
         return teamRepository.findList(gameType);
     }

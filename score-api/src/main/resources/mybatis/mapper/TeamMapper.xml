@@ -27,11 +27,16 @@
         <result column="country_logo2" jdbcType="VARCHAR" property="countryLogo2"/>
         <result column="score" jdbcType="INTEGER" property="score"/>
         <result column="ranking" jdbcType="INTEGER" property="ranking"/>
+        <result column="region_ranking" jdbcType="INTEGER" property="regionRanking"/>
+        <result column="world_ranking" jdbcType="INTEGER" property="worldRanking"/>
         <result column="created_time" jdbcType="VARCHAR" property="createdTime"/>
         <result column="updated_time" jdbcType="VARCHAR" property="updatedTime"/>
     </resultMap>
+    <select id="findAll" resultMap="BaseMap">
+        select id, game_type from `team`
+    </select>
     <select id="findList" resultMap="BaseMap">
-        select * from `team`
+        select id, full_name, logo, logo2  from `team`
         where game_type = #{gameType}
     </select>
     <select id="isExist" resultType="Integer">
@@ -62,6 +67,8 @@
             country_logo2,
             score,
             ranking,
+            region_ranking,
+            world_ranking,
             created_time,
             updated_time
         ) values (
@@ -88,6 +95,8 @@
             #{countryLogo2},
             #{score},
             #{ranking},
+            #{regionRanking},
+            #{worldRanking},
             #{createdTime},
             #{updatedTime}
         )
@@ -160,6 +169,12 @@
             </if>
             <if test="ranking != null">
                 ranking = #{ranking},
+            </if>
+            <if test="regionRanking != null">
+                region_ranking = #{regionRanking},
+            </if>
+            <if test="worldRanking != null">
+                world_ranking = #{worldRanking},
             </if>
             <if test="createdTime != null">
                 created_time = #{createdTime},

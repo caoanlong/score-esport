@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface TeamRepository {
+    List<Team> findAll();
     List<Team> findList(@Param("gameType") String gameType);
     Integer isExist(String teamId);
     void insert(Team team);
