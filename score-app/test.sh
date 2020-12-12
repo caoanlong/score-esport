@@ -1,0 +1,1 @@
+nohup java -jar score-app-0.0.1-SNAPSHOT.jar --spring.profiles.active=test &

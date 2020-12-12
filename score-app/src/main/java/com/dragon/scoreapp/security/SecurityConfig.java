@@ -64,7 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/error",
                         "/member/register",
                         "/member/getPhoneCode",
-                        "/match/**"
+                        "/match/**",
+                        "/tournament/**"
                 ).permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated()

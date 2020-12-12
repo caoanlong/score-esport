@@ -1,0 +1,9 @@
+赛事进度: https://m.shangniu.cn/api/game/user/tournament/getTournamentMatchPage?gameType=dota&tournamentId=997&pageIndex=1
+赛事数据:
+  战队榜: --
+  选手榜: https://m.shangniu.cn/api/game/user/tournament/getTournamentStatRankPlayer?gameType=dota&tournamentId=997
+  英雄榜: https://m.shangniu.cn/api/game/user/tournament/getTournamentStatRankHero?gameType=dota&tournamentId=997
+参赛战队: --
+相关资讯: --
+
+战队列表: https://www.shangniu.cn/api/game/user/team/getTeamPageList?gameType=csgo&pageIndex=1&pageSize=10000

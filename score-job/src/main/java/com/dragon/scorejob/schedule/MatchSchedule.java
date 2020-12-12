@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,9 @@ import java.util.List;
 @Slf4j
 @Component
 public class MatchSchedule {
+
+    @Value("${spring.profiles.active}")
+    private String env;
 
     @Autowired
     private MatchService matchService;
@@ -77,6 +81,7 @@ public class MatchSchedule {
      */
     @Scheduled(fixedRate = 300000)
     public void save() throws IOException, InterruptedException {
+        if ("dev".equals(env)) return;
         Date today = new Date();
         List<String> dates = new ArrayList<>();
         for (int i = 5; i > 0; i--) {
@@ -95,8 +100,7 @@ public class MatchSchedule {
             dates.add(format.format(date));
         }
         for (String date: dates) {
-            log.info(date);
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             getList(date);
         }
     }

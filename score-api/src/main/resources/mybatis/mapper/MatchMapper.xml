@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.scoreapi.repository.MatchRepository">
     <resultMap id="BaseMap" type="Match">
-        <id column="match_id" jdbcType="VARCHAR" property="matchId"/>
+        <id column="match_id" jdbcType="INTEGER" property="matchId"/>
         <result column="match_time" jdbcType="VARCHAR" property="matchTime"/>
         <result column="match_title" jdbcType="VARCHAR" property="matchTitle"/>
         <result column="game_type" jdbcType="VARCHAR" property="gameType"/>
@@ -40,17 +40,25 @@
         <result column="away_trend" jdbcType="VARCHAR" property="awayTrend"/>
     </resultMap>
     <select id="findList" resultMap="BaseMap">
-        select m.*, t.* from `match` m
+        select
+        m.*,
+        t.tournament_logo as tournament_logo,
+        t.tournament_name as tournament_name,
+        t.tournament_name_en as tournament_name_en,
+        t.tournament_short_name as tournament_short_name,
+        t.game_type as game_t
+        from
+        `match` m
         left join `tournament` t on t.tournament_id = m.tournament_id
-        where game_type in
+        where m.game_type in
         <foreach collection="gameTypes" item="gameType" index="index" open="(" close=")" separator=",">
             #{gameType}
         </foreach>
         <if test="gameStatus != null">
-            and status = #{gameStatus}
+            and m.status = #{gameStatus}
         </if>
         <if test="date != null">
-            and date(match_time) = date(#{date})
+            and date(m.match_time) = date(#{date})
         </if>
     </select>
     <select id="isExist" resultType="Integer">

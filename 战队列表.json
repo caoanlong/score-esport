@@ -1,0 +1,612 @@
+{
+    "code": 200,
+    "message": "Success",
+    "body": {
+        "rows": [
+            {
+                "teamId": "4074",
+                "teamName": "Lvlup",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/a98b6e315fd45e244a9aa363bd503b6f.png",
+                "kda": null
+            },
+            {
+                "teamId": "2500",
+                "teamName": "Chiefs",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/99f2c953c55cbe03166cc2623d97e4d3.png",
+                "kda": null
+            },
+            {
+                "teamId": "1402",
+                "teamName": "Tyloo",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/12105d33cb584b01fa53218f967443f0.png",
+                "kda": null
+            },
+            {
+                "teamId": "9405",
+                "teamName": "Ec-kyiv",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9219",
+                "teamName": "Wings-up",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FiPMx9sdZyuwBA78teSUMeRmImUN.png",
+                "kda": null
+            },
+            {
+                "teamId": "8392",
+                "teamName": "Keep the Comms Up",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8367",
+                "teamName": "Mustang-crew",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/725ec0d197a5f51993586f2dc4cc6e4b.png",
+                "kda": null
+            },
+            {
+                "teamId": "8352",
+                "teamName": "Rise",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/b8eeaca41e1483acc5df9ef479c3b28a.png",
+                "kda": null
+            },
+            {
+                "teamId": "8066",
+                "teamName": "Imperium",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/906d41f5517217f5cf4dd1abda1d1fb7.png",
+                "kda": null
+            },
+            {
+                "teamId": "9199",
+                "teamName": "Shock-bomb",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9040",
+                "teamName": "Invictus-int",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FtD-Pk6owG4H1lXtPC038S1n1ZyF.png",
+                "kda": null
+            },
+            {
+                "teamId": "8320",
+                "teamName": "Aa",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "7512",
+                "teamName": "9ine",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/800273c50acab6b3f8f20473cfcb7db6.png",
+                "kda": null
+            },
+            {
+                "teamId": "7203",
+                "teamName": "Sangal",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/9c300522794ecad7c9aebcaccee68f82.png",
+                "kda": null
+            },
+            {
+                "teamId": "4931",
+                "teamName": "D13",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/586f2aadbcac9fd20d97f1fac6fc284c.png",
+                "kda": null
+            },
+            {
+                "teamId": "4039",
+                "teamName": "Ambush",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/37b7f1eb58e113011405669f107ba359.png",
+                "kda": null
+            },
+            {
+                "teamId": "3053",
+                "teamName": "Quest",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/db6b026d9f4081939ab6668214584ed0.png",
+                "kda": null
+            },
+            {
+                "teamId": "9513",
+                "teamName": "Navi-youth",
+                "teamLogo": null,
+                "kda": null
+            },
+            {
+                "teamId": "9484",
+                "teamName": "Ex-imperium",
+                "teamLogo": null,
+                "kda": null
+            },
+            {
+                "teamId": "9298",
+                "teamName": "Vpprodigy",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/Fuf5SOOUXggniJJgQK3Hh70StdNF.png",
+                "kda": null
+            },
+            {
+                "teamId": "8233",
+                "teamName": "Tiger",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/348647d357f2450b00c44f3d9d9df76f.png",
+                "kda": null
+            },
+            {
+                "teamId": "7812",
+                "teamName": "Third-impact",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "6090",
+                "teamName": "Rooster",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/1bb6896b2bea01113594187137aafcb9.png",
+                "kda": null
+            },
+            {
+                "teamId": "1645",
+                "teamName": "Berzerk",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/bb24417a9d0d07fd7bacc2cd29782d44.png",
+                "kda": null
+            },
+            {
+                "teamId": "8629",
+                "teamName": "ARG",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "7378",
+                "teamName": "Royalty",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "6588",
+                "teamName": "Hreds",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/efefca40a3356924fcaf1a390909c22e.png",
+                "kda": null
+            },
+            {
+                "teamId": "6226",
+                "teamName": "Ggpr",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/3eeaafe6a1977556c090b37963901f0a.png",
+                "kda": null
+            },
+            {
+                "teamId": "5841",
+                "teamName": "Thunder-logic",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/46d961be7697832e877ee0fbd339ff0b.png",
+                "kda": null
+            },
+            {
+                "teamId": "2521",
+                "teamName": "Keyd",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/9bf92edd2925ab0b3e1e811b991f00c4.png",
+                "kda": null
+            },
+            {
+                "teamId": "9267",
+                "teamName": "Masonic",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9092",
+                "teamName": "Ex-recon-5",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/Fm-iKHI1bztC79pTi8naYepGAIu2.png",
+                "kda": null
+            },
+            {
+                "teamId": "9031",
+                "teamName": "Havan-liberty",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FgJAS-hgCd4LQR6SVbEchKZSboo2.png",
+                "kda": null
+            },
+            {
+                "teamId": "8461",
+                "teamName": "Warriors International",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/c49442a746188a2ad07919435b2b467a.png",
+                "kda": null
+            },
+            {
+                "teamId": "8452",
+                "teamName": "Truckers-with-attitude",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "7412",
+                "teamName": "Hard-legion",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/206424ddbc5cb3748942178d790b766d.png",
+                "kda": null
+            },
+            {
+                "teamId": "6115",
+                "teamName": "Giants fe",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "4867",
+                "teamName": "Ground-zero",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/ba10f41bc48a6b6f183a963ed0bac0ed.png",
+                "kda": null
+            },
+            {
+                "teamId": "4602",
+                "teamName": "Beyond",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/379d4fdf23c915969d5eff29f155082d.png",
+                "kda": null
+            },
+            {
+                "teamId": "4317",
+                "teamName": "Invictus",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/d0c61d4aba07dd0588bde656ac505ce0.png",
+                "kda": null
+            },
+            {
+                "teamId": "3748",
+                "teamName": "Quantum-bellator-fire",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/2273d57c7bd573147eda30889d7353a0.png",
+                "kda": null
+            },
+            {
+                "teamId": "3566",
+                "teamName": "Red-canids",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/cb1bbfd4e4e18799f170323dad67e4f6.png",
+                "kda": null
+            },
+            {
+                "teamId": "3391",
+                "teamName": "Singularity",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/f906ca03b60e046fd64214b1631dd723.png",
+                "kda": null
+            },
+            {
+                "teamId": "9469",
+                "teamName": "Farming-simulator",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/Fm-iKHI1bztC79pTi8naYepGAIu2.png",
+                "kda": null
+            },
+            {
+                "teamId": "9466",
+                "teamName": "Ex-thunder-logic",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FpMz2UNCkIJfesU1xkeVhjS94Re1.png",
+                "kda": null
+            },
+            {
+                "teamId": "9464",
+                "teamName": "Gsg9",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/Fm-iKHI1bztC79pTi8naYepGAIu2.png",
+                "kda": null
+            },
+            {
+                "teamId": "9338",
+                "teamName": "Entropiq",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9273",
+                "teamName": "Ubiteams",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9095",
+                "teamName": "Lese",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9070",
+                "teamName": "E-galo",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8863",
+                "teamName": "Arcane-wave",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8838",
+                "teamName": "Lethal-divide",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8523",
+                "teamName": "Real-betis",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8076",
+                "teamName": "1win",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/a51a30e59c6c14d7da13e8ae53760cf6.png",
+                "kda": null
+            },
+            {
+                "teamId": "7730",
+                "teamName": "Mako",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/5066081169b24d6d100c9b797fe5f552.png",
+                "kda": null
+            },
+            {
+                "teamId": "7234",
+                "teamName": "Kingzzz",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/996c5bb96c8e337a55b9d389a5abf1cd.png",
+                "kda": null
+            },
+            {
+                "teamId": "6697",
+                "teamName": "Kinship",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FgdQ6PxFzSCVsmXtMydh2Dj1Reth.png",
+                "kda": null
+            },
+            {
+                "teamId": "5535",
+                "teamName": "Unique",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/243fd86e71f3dea9645ebe0076b5775a.png",
+                "kda": null
+            },
+            {
+                "teamId": "5198",
+                "teamName": "Furia-academy",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/1477023d9a4c5b364e608313af8ab206.png",
+                "kda": null
+            },
+            {
+                "teamId": "9541",
+                "teamName": "Esimed",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FiBXFQk2Ot0gjk0QbKGVVl0Goh-d.png",
+                "kda": null
+            },
+            {
+                "teamId": "9313",
+                "teamName": "Integral-nation",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FkdBUF9h1QH865FmmtKvMdbDK62p.png",
+                "kda": null
+            },
+            {
+                "teamId": "9079",
+                "teamName": "Caught-off-guard",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/Fln4wTT9W-pxQqxXDbpW7mYB8pfI.png",
+                "kda": null
+            },
+            {
+                "teamId": "8933",
+                "teamName": "Selectah",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8841",
+                "teamName": "Addice Inc.",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8503",
+                "teamName": "Wygers",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/61d7720f4d857f723f547868e450959e.png",
+                "kda": null
+            },
+            {
+                "teamId": "8429",
+                "teamName": "w2c",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8365",
+                "teamName": "Zigma",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/b0b3bc6e12c6637bdad27a0ff6aeb7de.png",
+                "kda": null
+            },
+            {
+                "teamId": "8034",
+                "teamName": "High Coast",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/b00b5da1dd6bafab8ca47b640eb2862b.png",
+                "kda": null
+            },
+            {
+                "teamId": "7981",
+                "teamName": "S2V",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/ce9e1140f8b6b124f376b77f750bc5fb.png",
+                "kda": null
+            },
+            {
+                "teamId": "6432",
+                "teamName": "Mazaalai",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/35ebc4ef5f74b6ea97f3e1cc3f23cde8.png",
+                "kda": null
+            },
+            {
+                "teamId": "5690",
+                "teamName": "Imperial",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/f38d97f28146f69e76c2b2a9a402a6a5.png",
+                "kda": null
+            },
+            {
+                "teamId": "4334",
+                "teamName": "Paradox",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/6cf331fc3bb555b5eae89105be05f8a5.png",
+                "kda": null
+            },
+            {
+                "teamId": "4323",
+                "teamName": "Rot",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/155949aca50037a3a3b7f74788df56bb.png",
+                "kda": null
+            },
+            {
+                "teamId": "3530",
+                "teamName": "Incept",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/102dbad4fdfa73ce9b4c5392d2ef9f24.png",
+                "kda": null
+            },
+            {
+                "teamId": "9302",
+                "teamName": "Revenant",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FsKD7hjZ3JnhsZ0JnqT9SSxyIT-i.png",
+                "kda": null
+            },
+            {
+                "teamId": "9224",
+                "teamName": "Zerozone",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9216",
+                "teamName": "Cohesive-concepts",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "8464",
+                "teamName": "Morning-light",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/e1af2d10f2e4f13607bc082b05b9d67a.png",
+                "kda": null
+            },
+            {
+                "teamId": "8443",
+                "teamName": "Sws",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/8f67209a6eb39765ae9fb8973e3f2030.png",
+                "kda": null
+            },
+            {
+                "teamId": "8015",
+                "teamName": "Sigma",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/d84a3376a95968ec3fc80edf706381db.png",
+                "kda": null
+            },
+            {
+                "teamId": "6830",
+                "teamName": "Tenerife-titans",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/4e3ca5803985480d2b20aa9a57896150.png",
+                "kda": null
+            },
+            {
+                "teamId": "6163",
+                "teamName": "Thedice",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/0c26afd5fc7a545cfd1f6c3791c9566c.png",
+                "kda": null
+            },
+            {
+                "teamId": "6108",
+                "teamName": "Redemption-poa",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/0485abe14507a880688de235d92e572c.png",
+                "kda": null
+            },
+            {
+                "teamId": "5986",
+                "teamName": "Baecon",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/5011ebd2b018b187deea3458860cad56.png",
+                "kda": null
+            },
+            {
+                "teamId": "5437",
+                "teamName": "Gucci Squad",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "5417",
+                "teamName": "Vireopro",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/9ef54be58d4f5ba326871d3cc761c2b3.png",
+                "kda": null
+            },
+            {
+                "teamId": "5214",
+                "teamName": "Detona",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/09d5b960e31e772e7f5d770be34895a0.png",
+                "kda": null
+            },
+            {
+                "teamId": "5196",
+                "teamName": "Downfall",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/d2e815c3287cd6b3121952a95b85f03d.png",
+                "kda": null
+            },
+            {
+                "teamId": "3759",
+                "teamName": "Ftw",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/2484d5ec0f34f0cb5fa755a38ac90757.png",
+                "kda": null
+            },
+            {
+                "teamId": "3105",
+                "teamName": "Gameagents",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/87e107983432c6d07aaf359fe7805299.png",
+                "kda": null
+            },
+            {
+                "teamId": "2720",
+                "teamName": "Clg-red",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/f0cf04156946df78e1314268acd4b35f.png",
+                "kda": null
+            },
+            {
+                "teamId": "1960",
+                "teamName": "Skdc",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/ad9d9fb899d6ab736c8922bc65259524.png",
+                "kda": null
+            },
+            {
+                "teamId": "9475",
+                "teamName": "Worst-enemy",
+                "teamLogo": null,
+                "kda": null
+            },
+            {
+                "teamId": "9465",
+                "teamName": "Vaniity",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FhQWrCP_eX1nm6ngTG18O7YE2R6o.png",
+                "kda": null
+            },
+            {
+                "teamId": "9225",
+                "teamName": "Los-kogutos",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9209",
+                "teamName": "After",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/Fur8Q0QQ_q-N6IggkbTFuDF5lTmk.png",
+                "kda": null
+            },
+            {
+                "teamId": "9131",
+                "teamName": "Rooster-2",
+                "teamLogo": "https://www.sndjoss.com/game/csgo/team/FoFNUML2aGNIfSauMzGjtOwkdltv.png",
+                "kda": null
+            },
+            {
+                "teamId": "9041",
+                "teamName": "Save",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9015",
+                "teamName": "Grond",
+                "teamLogo": "",
+                "kda": null
+            },
+            {
+                "teamId": "9014",
+                "teamName": "Bezotca",
+                "teamLogo": "",
+                "kda": null
+            }
+        ],
+        "pageNum": 2,
+        "pageSize": 100,
+        "total": 8684,
+        "pageTotal": 87
+    }
+}
