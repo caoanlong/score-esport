@@ -10,6 +10,7 @@ import java.util.List;
 public interface TeamRepository {
     List<Team> findAll();
     List<Team> findList(@Param("gameType") String gameType);
+    Team findById(String id);
     Integer isExist(String teamId);
     void insert(Team team);
     void update(Team team);

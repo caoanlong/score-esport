@@ -21,6 +21,10 @@ public class TeamService {
         return teamRepository.findList(gameType);
     }
 
+    public Team findById(String id) {
+        return teamRepository.findById(id);
+    }
+
     @Transactional
     public void save(Team team) {
         Integer exist = teamRepository.isExist(team.getId());

@@ -42,6 +42,9 @@
     <select id="isExist" resultType="Integer">
         select 1 from `team` where id = #{id} limit 1
     </select>
+    <select id="findById" resultMap="BaseMap">
+        select * from `team` where id = #{id}
+    </select>
     <insert id="insert" parameterType="Team" keyColumn="id" keyProperty="id">
         insert into `team` (
             id,
