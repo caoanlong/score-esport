@@ -8,8 +8,9 @@ import java.util.List;
 
 @Repository
 public interface TournamentRepository {
+    List<Tournament> findAll();
     List<Tournament> findList(@Param("gameType") String gameType, @Param("status") Integer status);
-    Integer isExist(Integer tournamentId);
+    Integer isExist(String tournamentId);
     void insert(Tournament tournament);
     void update(Tournament tournament);
 }

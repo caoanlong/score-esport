@@ -1,5 +1,6 @@
 package com.dragon.scoreapi.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.Date;
@@ -7,9 +8,10 @@ import java.util.Date;
 /**
  * 联赛
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class Tournament {
-    private Integer tournamentId;
+    private String tournamentId;
     private String tournamentName;
     private String tournamentLogo;
     private String tournamentNameEn;

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragon.scoreapi.repository.PlayerRepository">
+    <resultMap id="BaseMap" type="Player">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+        <result column="game_type" jdbcType="VARCHAR" property="gameType"/>
+        <result column="deleted" jdbcType="BOOLEAN" property="deleted"/>
+        <result column="full_name" jdbcType="VARCHAR" property="fullName"/>
+        <result column="short_name" jdbcType="VARCHAR" property="shortName"/>
+        <result column="name_zh" jdbcType="VARCHAR" property="nameZh"/>
+        <result column="name_en" jdbcType="VARCHAR" property="nameEn"/>
+        <result column="abbr_zh" jdbcType="VARCHAR" property="abbrZh"/>
+        <result column="abbr_en" jdbcType="VARCHAR" property="abbrEn"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="logo2" jdbcType="VARCHAR" property="logo2"/>
+        <result column="team_id" jdbcType="VARCHAR" property="teamId"/>
+        <result column="country_id" jdbcType="INTEGER" property="countryId"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+        <result column="retired" jdbcType="INTEGER" property="retired"/>
+        <result column="team_name_zh" jdbcType="VARCHAR" property="teamNameZh"/>
+        <result column="team_name_en" jdbcType="VARCHAR" property="teamNameEn"/>
+        <result column="team_logo" jdbcType="VARCHAR" property="teamLogo"/>
+        <result column="team_logo2" jdbcType="VARCHAR" property="teamLogo2"/>
+        <result column="country_name_zh" jdbcType="VARCHAR" property="countryNameZh"/>
+        <result column="country_name_en" jdbcType="VARCHAR" property="countryNameEn"/>
+        <result column="country_logo" jdbcType="VARCHAR" property="countryLogo"/>
+        <result column="country_logo2" jdbcType="VARCHAR" property="countryLogo2"/>
+        <result column="position_name" jdbcType="VARCHAR" property="positionName"/>
+        <result column="start_order_name" jdbcType="VARCHAR" property="startOrderName"/>
+        <result column="created_time" jdbcType="VARCHAR" property="createdTime"/>
+        <result column="updated_time" jdbcType="VARCHAR" property="updatedTime"/>
+    </resultMap>
+    <select id="findAll" resultMap="BaseMap">
+        select id, full_name, logo, logo2 from `player`
+    </select>
+    <select id="findList" resultMap="BaseMap">
+        select id, full_name, logo, logo2  from `player`
+        where game_type = #{gameType}
+    </select>
+    <select id="isExist" resultType="Integer">
+        select 1 from `player` where id = #{id} limit 1
+    </select>
+    <select id="findById" resultMap="BaseMap">
+        select * from `player` where id = #{id}
+    </select>
+    <insert id="insert" parameterType="Team" keyColumn="id" keyProperty="id">
+        insert into `player` (
+            id,
+            version,
+            game_type,
+            deleted,
+            full_name,
+            short_name,
+            name_zh,
+            name_en,
+            abbr_zh,
+            abbr_en,
+            logo,
+            logo2,
+            team_id,
+            country_id,
+            real_name,
+            birthday,
+            retired,
+            country_name_zh,
+            country_name_en,
+            country_logo,
+            country_logo2,
+            position_name,
+            start_order_name,
+            created_time,
+            updated_time
+        ) values (
+            #{id},
+            #{version},
+            #{gameType},
+            #{deleted},
+            #{fullName},
+            #{shortName},
+            #{nameZh},
+            #{nameEn},
+            #{abbrZh},
+            #{abbrEn},
+            #{logo},
+            #{logo2},
+            #{teamId},
+            #{countryId},
+            #{realName},
+            #{birthday},
+            #{retired},
+            #{countryNameZh},
+            #{countryNameEn},
+            #{countryLogo},
+            #{countryLogo2},
+            #{positionName},
+            #{startOrderName},
+            #{createdTime},
+            #{updatedTime}
+        )
+    </insert>
+    <update id="update" parameterType="Team">
+        update `player`
+        <set>
+            <if test="version != null">
+                version = #{version},
+            </if>
+            <if test="gameType != null">
+                game_type = #{gameType},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted},
+            </if>
+            <if test="fullName != null">
+                full_name = #{fullName},
+            </if>
+            <if test="shortName != null">
+                short_name = #{shortName},
+            </if>
+            <if test="nameZh != null">
+                name_zh = #{nameZh},
+            </if>
+            <if test="nameEn != null">
+                name_en = #{nameEn},
+            </if>
+            <if test="abbrZh != null">
+                abbr_zh = #{abbrZh},
+            </if>
+            <if test="abbrEn != null">
+                abbr_en = #{abbrEn},
+            </if>
+            <if test="logo != null">
+                logo = #{logo},
+            </if>
+            <if test="logo2 != null">
+                logo2 = #{logo2},
+            </if>
+            <if test="teamId != null">
+                team_id = #{teamId},
+            </if>
+            <if test="countryId != null">
+                country_id = #{countryId},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+            <if test="retired != null">
+                retired = #{retired},
+            </if>
+            <if test="countryNameZh != null">
+                country_name_zh = #{countryNameZh},
+            </if>
+            <if test="countryNameEn != null">
+                country_name_en = #{countryNameEn},
+            </if>
+            <if test="countryLogo != null">
+                country_logo = #{countryLogo},
+            </if>
+            <if test="countryLogo2 != null">
+                country_logo2 = #{countryLogo2},
+            </if>
+            <if test="positionName != null">
+                position_name = #{positionName},
+            </if>
+            <if test="startOrderName != null">
+                start_order_name = #{startOrderName},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

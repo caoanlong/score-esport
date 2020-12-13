@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.scoreapi.repository.TournamentRepository">
     <resultMap id="BaseMap" type="Tournament">
-        <id column="tournament_id" jdbcType="INTEGER" property="tournamentId"/>
+        <id column="tournament_id" jdbcType="VARCHAR" property="tournamentId"/>
         <result column="tournament_name" jdbcType="VARCHAR" property="tournamentName"/>
         <result column="tournament_logo" jdbcType="VARCHAR" property="tournamentLogo"/>
         <result column="tournament_name_en" jdbcType="VARCHAR" property="tournamentNameEn"/>
@@ -14,6 +14,9 @@
         <result column="start_time" jdbcType="VARCHAR" property="startTime"/>
         <result column="end_time" jdbcType="VARCHAR" property="endTime"/>
     </resultMap>
+    <select id="findAll" resultMap="BaseMap">
+        select tournament_id, game_type from `tournament`
+    </select>
     <select id="findList" resultMap="BaseMap">
         select * from `tournament`
         where game_type = #{gameType} and status = #{status}

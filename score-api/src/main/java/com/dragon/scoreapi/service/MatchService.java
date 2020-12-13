@@ -15,6 +15,10 @@ public class MatchService {
     @Autowired
     private MatchRepository matchRepository;
 
+    public List<Match> findAll() {
+        return matchRepository.findAll();
+    }
+
     public List<Match> findList(Date date, String[] gameTypes, Integer gameStatus) {
 
         return matchRepository.findList(date, gameTypes, gameStatus);

@@ -4,12 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dragon.scoreapi.repository.MatchRepository">
     <resultMap id="BaseMap" type="Match">
-        <id column="match_id" jdbcType="INTEGER" property="matchId"/>
+        <id column="match_id" jdbcType="VARCHAR" property="matchId"/>
         <result column="match_time" jdbcType="VARCHAR" property="matchTime"/>
         <result column="match_title" jdbcType="VARCHAR" property="matchTitle"/>
         <result column="game_type" jdbcType="VARCHAR" property="gameType"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
-        <result column="tournament_id" jdbcType="INTEGER" property="tournamentId"/>
+        <result column="tournament_id" jdbcType="VARCHAR" property="tournamentId"/>
         <result column="tournament_logo" jdbcType="VARCHAR" property="tournamentLogo"/>
         <result column="tournament_name" jdbcType="VARCHAR" property="tournamentName"/>
         <result column="tournament_name_en" jdbcType="VARCHAR" property="tournamentNameEn"/>
@@ -39,17 +39,32 @@
         <result column="away_rang_fen" jdbcType="VARCHAR" property="awayRangFen"/>
         <result column="away_trend" jdbcType="VARCHAR" property="awayTrend"/>
     </resultMap>
+    <select id="findAll" resultMap="BaseMap">
+        select match_id, game_type from `match`
+    </select>
     <select id="findList" resultMap="BaseMap">
         select
-        m.*,
-        t.tournament_logo as tournament_logo,
-        t.tournament_name as tournament_name,
-        t.tournament_name_en as tournament_name_en,
-        t.tournament_short_name as tournament_short_name,
-        t.game_type as game_t
-        from
-        `match` m
-        left join `tournament` t on t.tournament_id = m.tournament_id
+            m.match_id,
+            m.match_time,
+            m.status,
+            m.box,
+            m.box_bum,
+            m.tournament_id,
+            m.home_id,
+            m.away_id,
+            tou.tournament_logo as tournament_logo,
+            tou.tournament_name as tournament_name,
+            tou.game_type as game_t,
+            home.full_name as home_name,
+            home.short_name as home_short_name,
+            home.logo as home_logo,
+            away.full_name as away_name,
+            away.short_name as away_short_name,
+            away.logo as away_logo
+        from `match` m
+        left join `tournament` tou on tou.tournament_id = m.tournament_id
+        left join `team` home on home.id = m.home_id
+        left join `team` away on away.id = m.away_id
         where m.game_type in
         <foreach collection="gameTypes" item="gameType" index="index" open="(" close=")" separator=",">
             #{gameType}
@@ -79,23 +94,7 @@
             box,
             box_bum,
             home_id,
-            home_name,
-            home_short_name,
-            home_logo,
-            home_live_score,
-            home_score,
-            home_odds,
-            home_rang_fen,
-            home_trend,
-            away_id,
-            away_name,
-            away_short_name,
-            away_logo,
-            away_live_score,
-            away_score,
-            away_odds,
-            away_rang_fen,
-            away_trend
+            away_id
         ) values (
             #{matchId},
             #{matchTime},
@@ -110,23 +109,7 @@
             #{box},
             #{boxBum},
             #{homeId},
-            #{homeName},
-            #{homeShortName},
-            #{homeLogo},
-            #{homeLiveScore},
-            #{homeScore},
-            #{homeOdds},
-            #{homeRangFen},
-            #{homeTrend},
-            #{awayId},
-            #{awayName},
-            #{awayShortName},
-            #{awayLogo},
-            #{awayLiveScore},
-            #{awayScore},
-            #{awayOdds},
-            #{awayRangFen},
-            #{awayTrend}
+            #{awayId}
         )
     </insert>
     <update id="update" parameterType="Match">
@@ -168,56 +151,8 @@
             <if test="homeId != null">
                 home_id = #{homeId},
             </if>
-            <if test="homeName != null">
-                home_name = #{homeName},
-            </if>
-            <if test="homeShortName != null">
-                home_short_name = #{homeShortName},
-            </if>
-            <if test="homeLogo != null">
-                home_logo = #{homeLogo},
-            </if>
-            <if test="homeLiveScore != null">
-                home_live_score = #{homeLiveScore},
-            </if>
-            <if test="homeScore != null">
-                home_score = #{homeScore},
-            </if>
-            <if test="homeOdds != null">
-                home_odds = #{homeOdds},
-            </if>
-            <if test="homeRangFen != null">
-                home_rang_fen = #{homeRangFen},
-            </if>
-            <if test="homeTrend != null">
-                home_trend = #{homeTrend},
-            </if>
             <if test="awayId != null">
                 away_id = #{awayId},
-            </if>
-            <if test="awayName != null">
-                away_name = #{awayName},
-            </if>
-            <if test="awayShortName != null">
-                away_short_name = #{awayShortName},
-            </if>
-            <if test="awayLogo != null">
-                away_logo = #{awayLogo},
-            </if>
-            <if test="awayLiveScore != null">
-                away_live_score = #{awayLiveScore},
-            </if>
-            <if test="awayScore != null">
-                away_score = #{awayScore},
-            </if>
-            <if test="awayOdds != null">
-                away_odds = #{awayOdds},
-            </if>
-            <if test="awayRangFen != null">
-                away_rang_fen = #{awayRangFen},
-            </if>
-            <if test="awayTrend != null">
-                away_trend = #{awayTrend},
             </if>
         </set>
         where match_id = #{matchId}

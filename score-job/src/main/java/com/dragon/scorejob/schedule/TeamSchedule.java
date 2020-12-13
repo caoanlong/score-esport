@@ -2,7 +2,9 @@ package com.dragon.scorejob.schedule;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dragon.scoreapi.model.Player;
 import com.dragon.scoreapi.model.Team;
+import com.dragon.scoreapi.service.PlayerService;
 import com.dragon.scoreapi.service.TeamService;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -26,6 +28,8 @@ public class TeamSchedule {
 
     @Autowired
     private TeamService teamService;
+    @Autowired
+    private PlayerService playerService;
 
     private final OkHttpClient client = new OkHttpClient();
 
@@ -95,8 +99,14 @@ public class TeamSchedule {
         JSONObject props = jsonObject.getJSONObject("props");
         JSONObject pageProps = props.getJSONObject("pageProps");
         String teamInfo = pageProps.getString("teamInfo");
+        String teamPlayerList = pageProps.getString("teamPlayerList");
         Team team = JSONObject.parseObject(teamInfo, Team.class);
+        List<Player> players = JSONArray.parseArray(teamPlayerList, Player.class);
         teamService.update(team);
+        for (Player player: players) {
+            player.setGameType(gameType);
+            playerService.save(player);
+        }
         log.debug("done");
     }
 

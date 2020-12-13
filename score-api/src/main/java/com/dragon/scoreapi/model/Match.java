@@ -1,18 +1,20 @@
 package com.dragon.scoreapi.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class Match {
-    private Integer matchId;
+    private String matchId;
     private Date matchTime;
     private String matchTitle;
     private String gameType;
     private Integer status;
-    private Integer tournamentId;
+    private String tournamentId;
     private String tournamentLogo;
     private String tournamentName;
     private String tournamentNameEn;

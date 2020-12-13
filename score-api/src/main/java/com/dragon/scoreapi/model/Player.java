@@ -1,19 +1,17 @@
 package com.dragon.scoreapi.model;
 
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.Date;
 
-/**
- * 战队
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class Team {
+public class Player {
     private String id;
-    private String gameType;
     private Integer version;
+    private String gameType;
     private Boolean deleted;
     private String fullName;
     private String shortName;
@@ -23,19 +21,21 @@ public class Team {
     private String abbrEn;
     private String logo;
     private String logo2;
-    private Integer sourceType;
+    private String teamId;
     private Integer countryId;
-    private Integer regionId;
-    private String regionName;
-    private String totalEarnings;
+    private String realName;
+    private Date birthday;
+    private Integer retired;
+    private String teamNameZh;
+    private String teamNameEn;
+    private String teamLogo;
+    private String teamLogo2;
     private String countryNameZh;
     private String countryNameEn;
     private String countryLogo;
     private String countryLogo2;
-    private Integer score;
-    private Integer ranking;
-    private Integer regionRanking;
-    private Integer worldRanking;
+    private String positionName;
+    private String startOrderName;
     private Date createdTime;
     private Date updatedTime;
 }

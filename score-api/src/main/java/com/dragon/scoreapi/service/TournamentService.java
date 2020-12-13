@@ -14,6 +14,10 @@ public class TournamentService {
     @Autowired
     private TournamentRepository tournamentRepository;
 
+    public List<Tournament> findAll() {
+        return tournamentRepository.findAll();
+    }
+
     public List<Tournament> findList(String gameType, Integer status) {
         return tournamentRepository.findList(gameType, status);
     }
