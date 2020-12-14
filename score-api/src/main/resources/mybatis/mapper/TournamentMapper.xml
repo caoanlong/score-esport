@@ -23,6 +23,8 @@
             <result column="match_time" jdbcType="VARCHAR" property="matchTime"/>
             <result column="match_title" jdbcType="VARCHAR" property="matchTitle"/>
             <result column="match_status" jdbcType="INTEGER" property="status"/>
+            <result column="match_box" jdbcType="VARCHAR" property="box"/>
+            <result column="match_box_bum" jdbcType="VARCHAR" property="boxBum"/>
             <result column="home_id" jdbcType="VARCHAR" property="homeId"/>
             <result column="away_id" jdbcType="VARCHAR" property="awayId"/>
             <association property="home" column="home_id" select="findTeamByTeamId"/>
@@ -54,6 +56,8 @@
             m.match_time as match_time,
             m.status as match_status,
             m.match_title as match_title,
+            m.box as match_box,
+            m.box_bum as match_box_bum,
             m.home_id as home_id,
             m.away_id as away_id
         from `tournament` tou
