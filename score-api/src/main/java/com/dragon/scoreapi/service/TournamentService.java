@@ -1,5 +1,6 @@
 package com.dragon.scoreapi.service;
 
+import com.dragon.scoreapi.model.TeamTournament;
 import com.dragon.scoreapi.model.Tournament;
 import com.dragon.scoreapi.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,9 @@ public class TournamentService {
 
     public void update(Tournament tournament) {
         tournamentRepository.update(tournament);
+    }
+
+    public void insertTeamTournament(List<TeamTournament> teamTournaments) {
+        tournamentRepository.insertTeamTournament(teamTournaments);
     }
 }

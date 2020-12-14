@@ -2,6 +2,7 @@ package com.dragon.scorejob.schedule;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dragon.scoreapi.model.TeamTournament;
 import com.dragon.scoreapi.model.Tournament;
 import com.dragon.scoreapi.service.TournamentService;
 import com.dragon.scoreapi.utils.ScriptMirrorToObj;
@@ -23,6 +24,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -97,21 +99,15 @@ public class TournamentSchedule {
             String json = JSONObject.toJSONString(nuxt);
             JSONObject jsonObject = JSONObject.parseObject(json);
             JSONObject data = (JSONObject) jsonObject.getJSONArray("data").get(0);
+            JSONArray leagueTeamList = data.getJSONArray("leagueTeamList");
 
-            log.info(data.toJSONString());
-
-//            for (int i = 0; i < leagueTeamList.size(); i++) {
-//                ScriptObjectMirror slot = (ScriptObjectMirror) leagueTeamList.getSlot(i);
-//
-//            }
-//            log.debug(s);
-
-//            Object data = res.getJSONArray("data").get(0);
-//            if (null != data) {
-//                JSONObject data1 = (JSONObject) data;
-//
-//                log.debug(data1.toJSONString());
-//            }
+            List<TeamTournament> teamTournaments = new ArrayList<>();
+            for (int i = 0; i < leagueTeamList.size(); i++) {
+                TeamTournament teamTournament = leagueTeamList.getObject(i, TeamTournament.class);
+                teamTournaments.add(teamTournament);
+            }
+            tournamentService.insertTeamTournament(teamTournaments);
+            log.debug("teamTournaments: 完成");
         }
     }
 
@@ -133,9 +129,9 @@ public class TournamentSchedule {
      */
     @Scheduled(fixedRate = 43200000, initialDelay = 3000)
     public void saveInfo() throws InterruptedException {
-//        if ("dev".equals(env)) return;
+        if ("dev".equals(env)) return;
         List<Tournament> matches = tournamentService.findAll();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < matches.size(); i++) {
             Thread.sleep(3000);
             Tournament tournament = matches.get(i);
             new Thread(() -> {

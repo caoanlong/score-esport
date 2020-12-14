@@ -77,4 +77,12 @@
         </set>
         where tournament_id = #{tournamentId}
     </update>
+    <insert id="insertTeamTournament" parameterType="ArrayList">
+        insert into team_tournament (
+          team_id, tournament_id
+        ) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.teamId}, #{item.tournamentId})
+        </foreach>
+    </insert>
 </mapper>

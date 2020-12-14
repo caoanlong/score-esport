@@ -1,5 +1,6 @@
 package com.dragon.scoreapi.repository;
 
+import com.dragon.scoreapi.model.TeamTournament;
 import com.dragon.scoreapi.model.Tournament;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -13,4 +14,5 @@ public interface TournamentRepository {
     Integer isExist(String tournamentId);
     void insert(Tournament tournament);
     void update(Tournament tournament);
+    void insertTeamTournament(List<TeamTournament> teamTournaments);
 }
