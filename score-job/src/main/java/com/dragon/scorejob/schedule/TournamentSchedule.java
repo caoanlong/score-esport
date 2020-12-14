@@ -71,7 +71,7 @@ public class TournamentSchedule {
         }
     }
 
-    private void getInfo(String gameType, String id) throws IOException, ScriptException {
+    private void getInfo(String gameType, String id) throws IOException {
         log.debug("gameType: {}, id: {}", gameType, id);
         Request.Builder reqBuilder = new Request.Builder();
         HttpUrl.Builder urlBuilder = HttpUrl.parse("https://www.shangniu.cn/esports/" + gameType + "-match-" + id + ".html")
@@ -95,7 +95,12 @@ public class TournamentSchedule {
         String script = scriptStr.replace("window.", "var ");
         ScriptEngineManager sem = new ScriptEngineManager();
         ScriptEngine js = sem.getEngineByName("js");
-        js.eval(script);
+        try {
+            js.eval(script);
+        } catch (ScriptException e) {
+            log.info("gameType: {}, tournamentId: {}", gameType, id);
+            e.printStackTrace();
+        }
         ScriptObjectMirror nuxt__ = (ScriptObjectMirror) js.get("__NUXT__");
         if (null != nuxt__) {
             Object nuxt = ScriptMirrorToObj.convertIntoJavaObject(nuxt__);
@@ -109,14 +114,14 @@ public class TournamentSchedule {
                 tournamentService.insertTeamTournament(teamTournament);
             }
 
-            log.debug("teamTournaments: 完成");
+            log.info("teamTournaments: 完成");
         }
     }
 
     /**
-     * 每1小时分钟执行一次，初始启动延时20秒执行
+     * 每1小时分钟执行一次，初始启动延时30分钟执行
      */
-    @Scheduled(fixedRate = 3600000, initialDelay = 20000)
+    @Scheduled(fixedRate = 3600000, initialDelay = 1800000)
     public void saveList() throws IOException, InterruptedException {
         if ("dev".equals(env)) return;
         String[] gameTypes = {"lol", "dota", "kog", "csgo"};
@@ -127,16 +132,17 @@ public class TournamentSchedule {
     }
 
     /**
-     * 每6小时分钟执行一次，初始启动延时3秒执行
+     * 每1小时分钟执行一次，初始启动延时3秒执行
      */
-    @Scheduled(fixedRate = 21600000, initialDelay = 3000)
-    public void saveInfo() throws InterruptedException, IOException, ScriptException {
+    @Scheduled(fixedRate = 3600000, initialDelay = 3000)
+    public void saveInfo() throws InterruptedException, IOException {
         if ("dev".equals(env)) return;
         List<Tournament> tournaments = tournamentService.findAll();
         for (int i = 0; i < tournaments.size(); i++) {
             Tournament tournament = tournaments.get(i);
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             getInfo(tournament.getGameType(), tournament.getTournamentId());
+
         }
     }
 }
