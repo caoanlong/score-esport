@@ -24,6 +24,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 @Slf4j
@@ -81,8 +82,15 @@ public class TournamentSchedule {
         reqBuilder.addHeader("Host", "www.shangniu.cn");
         reqBuilder.addHeader("Referer", "https://www.shangniu.cn/match");
         Request request = reqBuilder.build();
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+        } catch (SocketTimeoutException e) {
+            log.warn("超时异常");
+            e.printStackTrace();
+            return;
+        }
 
-        Response response = client.newCall(request).execute();
         if (!response.isSuccessful()) throw new IOException("Unexpected code " + response.message());
         String html = response.body().string();
         Document document = Jsoup.parse(html);
@@ -100,6 +108,7 @@ public class TournamentSchedule {
         } catch (ScriptException e) {
             log.info("gameType: {}, tournamentId: {}", gameType, id);
             e.printStackTrace();
+            return;
         }
         ScriptObjectMirror nuxt__ = (ScriptObjectMirror) js.get("__NUXT__");
         if (null != nuxt__) {
