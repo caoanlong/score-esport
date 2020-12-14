@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 联赛
@@ -20,4 +21,6 @@ public class Tournament {
     private Date endTime;
     private Integer status;
     private String gameType;
+    private List<Team> teams;
+    private List<Match> matches;
 }

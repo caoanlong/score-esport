@@ -1,6 +1,8 @@
 package com.dragon.scoreapi.service;
 
+import com.dragon.scoreapi.enums.ResCode;
 import com.dragon.scoreapi.model.*;
+import com.dragon.scoreapi.model.exception.CommonException;
 import com.dragon.scoreapi.repository.SysRoleRepository;
 import com.dragon.scoreapi.repository.SysUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,9 @@ public class SysRoleService {
     ;
 
     public SysRole findById(Integer id) {
-        return sysRoleRepository.findById(id);
+        SysRole sysRole = sysRoleRepository.findById(id);
+        if (null == sysRole) throw new CommonException(ResCode.DATA_NOT_FOUND);
+        return sysRole;
     }
 
     @Transactional

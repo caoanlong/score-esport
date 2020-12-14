@@ -26,4 +26,10 @@ public class TournamentController {
         List<Tournament> list = tournamentService.findList(gameType, status);
         return ResultUtils.success(list);
     }
+
+    @GetMapping("/findById")
+    public ResultBean<Object> findById(@RequestParam(value = "id") String id) {
+        Tournament tournament = tournamentService.findById(id);
+        return ResultUtils.success(tournament);
+    }
 }

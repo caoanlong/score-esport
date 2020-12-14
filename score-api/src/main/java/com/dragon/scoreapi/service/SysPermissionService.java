@@ -1,7 +1,9 @@
 package com.dragon.scoreapi.service;
 
+import com.dragon.scoreapi.enums.ResCode;
 import com.dragon.scoreapi.model.PageBean;
 import com.dragon.scoreapi.model.SysPermission;
+import com.dragon.scoreapi.model.exception.CommonException;
 import com.dragon.scoreapi.repository.SysPermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +37,9 @@ public class SysPermissionService {
     ;
 
     public SysPermission findById(Integer id) {
-        return sysPermissionRepository.findById(id);
+        SysPermission sysPermission = sysPermissionRepository.findById(id);
+        if (null == sysPermission) throw new CommonException(ResCode.DATA_NOT_FOUND);
+        return sysPermission;
     }
 
     public void insert(SysPermission sysPermission) {

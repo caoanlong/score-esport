@@ -24,7 +24,6 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -89,6 +88,10 @@ public class TournamentSchedule {
         Document document = Jsoup.parse(html);
         Element nextData = document.getElementById("__nuxt").nextElementSibling();
         String scriptStr = nextData.data();
+        if (null == scriptStr || !scriptStr.contains("window.")) {
+            log.debug("script 脚本错误");
+            return;
+        };
         String script = scriptStr.replace("window.", "var ");
         ScriptEngineManager sem = new ScriptEngineManager();
         ScriptEngine js = sem.getEngineByName("js");
@@ -101,12 +104,11 @@ public class TournamentSchedule {
             JSONObject data = (JSONObject) jsonObject.getJSONArray("data").get(0);
             JSONArray leagueTeamList = data.getJSONArray("leagueTeamList");
 
-            List<TeamTournament> teamTournaments = new ArrayList<>();
             for (int i = 0; i < leagueTeamList.size(); i++) {
                 TeamTournament teamTournament = leagueTeamList.getObject(i, TeamTournament.class);
-                teamTournaments.add(teamTournament);
+                tournamentService.insertTeamTournament(teamTournament);
             }
-            tournamentService.insertTeamTournament(teamTournaments);
+
             log.debug("teamTournaments: 完成");
         }
     }
@@ -125,22 +127,16 @@ public class TournamentSchedule {
     }
 
     /**
-     * 每12小时分钟执行一次，初始启动延时3秒执行
+     * 每6小时分钟执行一次，初始启动延时3秒执行
      */
-    @Scheduled(fixedRate = 43200000, initialDelay = 3000)
-    public void saveInfo() throws InterruptedException {
+    @Scheduled(fixedRate = 21600000, initialDelay = 3000)
+    public void saveInfo() throws InterruptedException, IOException, ScriptException {
         if ("dev".equals(env)) return;
-        List<Tournament> matches = tournamentService.findAll();
-        for (int i = 0; i < matches.size(); i++) {
+        List<Tournament> tournaments = tournamentService.findAll();
+        for (int i = 0; i < tournaments.size(); i++) {
+            Tournament tournament = tournaments.get(i);
             Thread.sleep(3000);
-            Tournament tournament = matches.get(i);
-            new Thread(() -> {
-                try {
-                    getInfo(tournament.getGameType(), tournament.getTournamentId());
-                } catch (IOException | ScriptException e) {
-                    e.printStackTrace();
-                }
-            }).start();
+            getInfo(tournament.getGameType(), tournament.getTournamentId());
         }
     }
 }

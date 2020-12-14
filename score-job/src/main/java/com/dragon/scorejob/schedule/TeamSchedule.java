@@ -71,7 +71,7 @@ public class TeamSchedule {
                         teamService.save(team);
                     }
                 }
-                log.info("{} Team 保存完成！", gameType);
+                log.debug("{} Team 保存完成！", gameType);
             }
         } else {
             log.error("请求失败: {}", json.getString("message"));
@@ -107,7 +107,7 @@ public class TeamSchedule {
             player.setGameType(gameType);
             playerService.save(player);
         }
-        log.debug("done");
+        log.debug("TeamInfo 完成");
     }
 
     /**
@@ -127,19 +127,13 @@ public class TeamSchedule {
      * 每12小时分钟执行一次，初始启动延时3秒执行
      */
     @Scheduled(fixedRate = 43200000, initialDelay = 3000)
-    public void saveInfo() throws InterruptedException {
+    public void saveInfo() throws InterruptedException, IOException {
         if ("dev".equals(env)) return;
         List<Team> teams = teamService.findAll();
         for (int i = 0; i < teams.size(); i++) {
             Thread.sleep(3000);
             Team team = teams.get(i);
-            new Thread(() -> {
-                try {
-                    getInfo(team.getGameType(), team.getId());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }).start();
+            getInfo(team.getGameType(), team.getId());
         }
     }
 }

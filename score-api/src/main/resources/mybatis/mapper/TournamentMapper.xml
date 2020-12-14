@@ -13,6 +13,29 @@
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="start_time" jdbcType="VARCHAR" property="startTime"/>
         <result column="end_time" jdbcType="VARCHAR" property="endTime"/>
+        <collection property="teams" ofType="Team">
+            <id column="team_id" jdbcType="VARCHAR" property="id"/>
+            <result column="team_name" jdbcType="VARCHAR" property="fullName"/>
+            <result column="team_logo" jdbcType="VARCHAR" property="logo"/>
+        </collection>
+        <collection property="matches" ofType="Match">
+            <id column="match_id" jdbcType="VARCHAR" property="matchId"/>
+            <result column="match_time" jdbcType="VARCHAR" property="matchTime"/>
+            <result column="match_title" jdbcType="VARCHAR" property="matchTitle"/>
+            <result column="match_status" jdbcType="INTEGER" property="status"/>
+            <result column="home_id" jdbcType="VARCHAR" property="homeId"/>
+            <result column="away_id" jdbcType="VARCHAR" property="awayId"/>
+            <association property="home" column="home_id" select="findTeamByTeamId"/>
+            <association property="away" column="away_id" select="findTeamByTeamId"/>
+        </collection>
+    </resultMap>
+    <resultMap id="TeamResultMap" type="Team">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="full_name" jdbcType="VARCHAR" property="fullName"/>
+        <result column="short_name" jdbcType="VARCHAR" property="shortName"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="logo2" jdbcType="VARCHAR" property="logo2"/>
+        <result column="score" jdbcType="INTEGER" property="score"/>
     </resultMap>
     <select id="findAll" resultMap="BaseMap">
         select tournament_id, game_type from `tournament`
@@ -20,6 +43,29 @@
     <select id="findList" resultMap="BaseMap">
         select * from `tournament`
         where game_type = #{gameType} and status = #{status}
+    </select>
+    <select id="findById" resultMap="BaseMap">
+        select
+            tou.*,
+            t.id as team_id,
+            t.full_name as team_name,
+            t.logo as team_logo,
+            m.match_id as match_id,
+            m.match_time as match_time,
+            m.status as match_status,
+            m.match_title as match_title,
+            m.home_id as home_id,
+            m.away_id as away_id
+        from `tournament` tou
+        left join `team_tournament` tt on tt.tournament_id = tou.tournament_id
+        left join `team` t on t.id = tt.team_id
+        left join `match` m on m.tournament_id = tou.tournament_id
+        where tou.tournament_id = #{tournamentId}
+    </select>
+    <select id="findTeamByTeamId" resultMap="TeamResultMap">
+        select
+            id, full_name, short_name, logo, logo2, score
+        from `team` where id = #{teamId}
     </select>
     <select id="isExist" resultType="Integer">
         select 1 from `tournament` where tournament_id = #{tournamentId} limit 1
@@ -77,7 +123,13 @@
         </set>
         where tournament_id = #{tournamentId}
     </update>
-    <insert id="insertTeamTournament" parameterType="ArrayList">
+    <select id="isTeamTournamentExist" parameterType="TeamTournament" resultType="Integer">
+        select 1 from `team_tournament` where team_id = #{teamId} and tournament_id = #{tournamentId} limit 1
+    </select>
+    <insert id="insertTeamTournament" parameterType="TeamTournament">
+        insert into team_tournament (team_id, tournament_id) values (#{teamId}, #{tournamentId})
+    </insert>
+    <insert id="insertBatchTeamTournament" parameterType="ArrayList">
         insert into team_tournament (
           team_id, tournament_id
         ) values

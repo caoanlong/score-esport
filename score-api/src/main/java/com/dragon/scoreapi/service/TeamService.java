@@ -1,6 +1,8 @@
 package com.dragon.scoreapi.service;
 
+import com.dragon.scoreapi.enums.ResCode;
 import com.dragon.scoreapi.model.Team;
+import com.dragon.scoreapi.model.exception.CommonException;
 import com.dragon.scoreapi.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,9 @@ public class TeamService {
     }
 
     public Team findById(String id) {
-        return teamRepository.findById(id);
+        Team team = teamRepository.findById(id);
+        if (null == team) throw new CommonException(ResCode.DATA_NOT_FOUND);
+        return team;
     }
 
     @Transactional

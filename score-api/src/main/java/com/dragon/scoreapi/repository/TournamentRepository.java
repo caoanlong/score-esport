@@ -11,8 +11,10 @@ import java.util.List;
 public interface TournamentRepository {
     List<Tournament> findAll();
     List<Tournament> findList(@Param("gameType") String gameType, @Param("status") Integer status);
+    Tournament findById(String tournamentId);
     Integer isExist(String tournamentId);
     void insert(Tournament tournament);
     void update(Tournament tournament);
-    void insertTeamTournament(List<TeamTournament> teamTournaments);
+    Integer isTeamTournamentExist(TeamTournament teamTournament);
+    void insertTeamTournament(TeamTournament teamTournament);
 }

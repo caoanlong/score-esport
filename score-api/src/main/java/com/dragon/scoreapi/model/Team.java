@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 战队
@@ -38,4 +39,6 @@ public class Team {
     private Integer worldRanking;
     private Date createdTime;
     private Date updatedTime;
+    private List<Player> players;
+    private List<Match> matches;
 }

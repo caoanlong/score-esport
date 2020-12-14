@@ -31,6 +31,31 @@
         <result column="world_ranking" jdbcType="INTEGER" property="worldRanking"/>
         <result column="created_time" jdbcType="VARCHAR" property="createdTime"/>
         <result column="updated_time" jdbcType="VARCHAR" property="updatedTime"/>
+        <collection property="players" ofType="Player">
+            <id column="player_id" jdbcType="VARCHAR" property="id"/>
+            <result column="player_name" jdbcType="VARCHAR" property="fullName"/>
+            <result column="player_logo" jdbcType="VARCHAR" property="logo"/>
+            <result column="player_logo2" jdbcType="VARCHAR" property="logo2"/>
+            <result column="player_position_name" jdbcType="VARCHAR" property="positionName"/>
+        </collection>
+        <collection property="matches" ofType="Match">
+            <id column="match_id" jdbcType="VARCHAR" property="matchId"/>
+            <result column="match_time" jdbcType="VARCHAR" property="matchTime"/>
+            <result column="match_title" jdbcType="VARCHAR" property="matchTitle"/>
+            <result column="match_status" jdbcType="VARCHAR" property="status"/>
+            <result column="match_box" jdbcType="VARCHAR" property="box"/>
+            <result column="match_box_bum" jdbcType="VARCHAR" property="boxBum"/>
+            <association property="home" column="home_id" select="findTeamByTeamId"/>
+            <association property="away" column="away_id" select="findTeamByTeamId"/>
+        </collection>
+    </resultMap>
+    <resultMap id="TeamResultMap" type="Team">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="full_name" jdbcType="VARCHAR" property="fullName"/>
+        <result column="short_name" jdbcType="VARCHAR" property="shortName"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="logo2" jdbcType="VARCHAR" property="logo2"/>
+        <result column="score" jdbcType="INTEGER" property="score"/>
     </resultMap>
     <select id="findAll" resultMap="BaseMap">
         select id, game_type from `team`
@@ -43,7 +68,30 @@
         select 1 from `team` where id = #{id} limit 1
     </select>
     <select id="findById" resultMap="BaseMap">
-        select * from `team` where id = #{id}
+        select
+            t.*,
+            p.id as player_id,
+            p.full_name as player_name,
+            p.logo as player_logo,
+            p.logo2 as player_logo2,
+            p.position_name as player_position_name,
+            m.match_id as match_id,
+            m.match_time as match_time,
+            m.match_title as match_title,
+            m.status as match_status,
+            m.box as match_box,
+            m.box_bum as match_box_bum,
+            m.home_id as home_id,
+            m.away_id as away_id
+        from `team` t
+        left join `player` p on p.team_id = t.id
+        left join `match` m on m.home_id = t.id or m.away_id = t.id
+        where t.id = #{id}
+    </select>
+    <select id="findTeamByTeamId" resultMap="TeamResultMap">
+        select
+            id, full_name, short_name, logo, logo2, score
+        from `team` where id = #{teamId}
     </select>
     <insert id="insert" parameterType="Team" keyColumn="id" keyProperty="id">
         insert into `team` (

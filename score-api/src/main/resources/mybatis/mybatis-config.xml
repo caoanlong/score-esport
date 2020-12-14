@@ -12,5 +12,6 @@
         <typeAlias alias="Tournament" type="com.dragon.scoreapi.model.Tournament"/>
         <typeAlias alias="Team" type="com.dragon.scoreapi.model.Team"/>
         <typeAlias alias="Player" type="com.dragon.scoreapi.model.Player"/>
+        <typeAlias alias="TeamTournament" type="com.dragon.scoreapi.model.TeamTournament"/>
     </typeAliases>
 </configuration>

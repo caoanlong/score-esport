@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -46,6 +45,6 @@ public class Match {
     private String awayRangFen;
     private String awayTrend;
 
-    private List<Object> homeTeam;
-    private List<Object> awayTeam;
+    private Team home;
+    private Team away;
 }

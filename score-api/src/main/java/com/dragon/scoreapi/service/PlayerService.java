@@ -1,6 +1,8 @@
 package com.dragon.scoreapi.service;
 
+import com.dragon.scoreapi.enums.ResCode;
 import com.dragon.scoreapi.model.Player;
+import com.dragon.scoreapi.model.exception.CommonException;
 import com.dragon.scoreapi.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,9 @@ public class PlayerService {
     }
 
     public Player findById(String id) {
-        return playerRepository.findById(id);
+        Player player = playerRepository.findById(id);
+        if (null == player) throw new CommonException(ResCode.DATA_NOT_FOUND);
+        return player;
     }
 
     @Transactional

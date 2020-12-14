@@ -1,6 +1,8 @@
 package com.dragon.scoreapi.service;
 
+import com.dragon.scoreapi.enums.ResCode;
 import com.dragon.scoreapi.model.Member;
+import com.dragon.scoreapi.model.exception.CommonException;
 import com.dragon.scoreapi.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ public class MemberService {
 
     public Member findById(Integer id) {
         Member member = memberRepository.findById(id);
+        if (null == member) throw new CommonException(ResCode.DATA_NOT_FOUND);
         member.setPassword(null);
         return member;
     }

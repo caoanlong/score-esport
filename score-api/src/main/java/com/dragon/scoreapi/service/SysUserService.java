@@ -1,8 +1,10 @@
 package com.dragon.scoreapi.service;
 
+import com.dragon.scoreapi.enums.ResCode;
 import com.dragon.scoreapi.model.PageBean;
 import com.dragon.scoreapi.model.SysUser;
 import com.dragon.scoreapi.model.SysUserRole;
+import com.dragon.scoreapi.model.exception.CommonException;
 import com.dragon.scoreapi.repository.SysUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +44,9 @@ public class SysUserService {
     ;
 
     public SysUser findById(Integer id) {
-        return sysUserRepository.findById(id);
+        SysUser sysUser = sysUserRepository.findById(id);
+        if (null == sysUser) throw new CommonException(ResCode.DATA_NOT_FOUND);
+        return sysUser;
     }
 
     @Transactional
