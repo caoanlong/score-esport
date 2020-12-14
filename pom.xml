@@ -17,6 +17,7 @@
         <module>score-admin</module>
         <module>score-app</module>
         <module>score-job</module>
+        <module>score-schedule</module>
     </modules>
     <dependencies>
         <dependency>
